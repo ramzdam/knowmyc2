@@ -9,7 +9,7 @@
             <h2 style="margin:0;text-align: center;" class="text-uppercase">My C2 Log</h2>
             <div class="text-center">Controlled Substance Perpetual Inventory Management and Reporting System</div>
                 <form>
-                    <h4 class="text-center jumbotron " style="margin:20px 0 60px 0;color: #666666;">Display Pharmacy Name Here</h4>
+                    <h4 class="text-center jumbotron " style="margin:20px 0 60px 0;color: #666666;">@if (Session::has('data')) {!! Session('data.pharmacy')->name !!} @endif</h4>
                     <div class="form-group form-group-lg">
                         <input type="text" class="form-control" id="username" placeholder="Enter the drug NDC" />
                         <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 20px;">Add to log</button>
@@ -20,9 +20,9 @@
         <div class="panel-footer">
             <div style="margin-bottom: 20px;">myc2log.com information</div>
             <address>
-                Contact information <br/>
-                Ipsum Lorem: 092323 ipsum lorem ipsum<br/>
-                Ross Snyder: 092323 ipsum lorem ipsum<br/>
+                @if (Session::has('data')) {!! Session('data.pharmacy')->contact !!} @endif <br/>
+                Address: @if (Session::has('data')) {!! Session('data.pharmacy')->address !!} @else No Address @endif<br/>
+                Contact Person: @if (Session::has('data')) {!! Session('data.pharmacy')->contact_person !!} @else No Contact Person @endif<br/>
             </address>
 
         </div>

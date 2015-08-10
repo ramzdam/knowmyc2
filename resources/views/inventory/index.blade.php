@@ -1,5 +1,5 @@
 @extends('master')
-@include('partials.modal')
+
 @section('content')
 <form class="form-group form-inline well">
     <input type="text" class="form-control col-sm-8" placeholder="Type drug name here" />
@@ -17,190 +17,112 @@
             <th>Date Logged</th>
             <th>Quantity</th>
             <th>NDC #</th>
-            <th>Actual #</th>
-            <th>Date Expire</th>
-            <th>Assign Pharmacist</th>
+            <th>RX #</th>
+            <th>Drug Schedule</th>
+            <th>Manufacturer</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
-        <tr>
-            <td>Eat dirtd</td>
-            <td>March 7, 2015</td>
-            <td>5</td>
-            <td>74DRFG</td>
-            <td>5677899996</td>
-            <td>January 7, 2020</td>
-            <td>Juan Dela Cruz</td>
-        </tr>
+        @foreach ($drugs as $drug)
+            <tr>
+                <td>{{ $drug->name }}</td>
+                <td>{{ $drug->created_at }}</td>
+                <td>{{ $drug->quantity }}</td>
+                <td>{{ $drug->NDC }}</td>
+                <td>{{ $drug->rx_no }}</td>
+                <td>{{ $drug->drug_schedule }}</td>
+                <td>{{ $drug->manufacturer }}</td>
+            </tr>
+
+        @endforeach
+
         </tbody>
     </table>
 </div>
-
+@include('partials.modal')
 <script>
-    $('#exampleModal').on('show.bs.modal', function (event) {
-//        var button = $(event.relatedTarget) // Button that triggered the modal
-//        var recipient = button.d  ata('whatever') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-//        var modal = $(this);
-//
-//        modal.find('.modal-title').text('New message to ' + recipient)
-//        modal.find('.modal-body input').val(recipient)
+    $('#addDrugModal').on('show.bs.modal', function (event) {
+        $("#verify").hide();
+    });
+    $('#addDrugModal').on('hidden.bs.modal', function () {
+        clearData();
+    })
+    $("#add_drug").click(function() {
+        copyToVerify();
+
+        if ($(this).hasClass('submit')) {
+            submit($("#new_drug_frm"));
+//            $("#new_drug_frm").submit();
+            $(this).removeClass('submit');
+        } else {
+            $(this).addClass('submit');
+        }
+        return false;
     });
 
 
+    function submit($form) {
+
+        $.ajax({
+            url: $form.attr("action"),
+            dataType: 'json',
+            type: 'POST',
+            data: $form.serialize(),
+            success: function(response) {
+                if (response.success) {
+                    alert(response.message);
+                    window.location.href = '/inventory';
+                }
+            }
+        }).error(function(data){
+            var errors = data.responseJSON;
+            div = "<div id='error_message'>";
+            $.each(errors, function( index, value ) {
+
+                div += "<div  class='error has-error'>" + value + "</div>";
+            });
+            div += "</div>";
+
+           $("#new_drug_frm").prepend(div);
+            $(this).removeClass('submit');
+        });
+    }
+
+    function clearData() {
+        $("#new_drug").show();
+        $('#verify').hide();
+        $('#error_message').remove();
+
+        $("#ndc").val('');
+        $("#name").val('');
+        $("#soh").val('');
+        $("#new_soh").val('');
+        $("#date_dispensed").val('');
+//        $("#pharmacists_span").html($("#ndc").val());
+        $("#quantity").val('');
+        $("#drug_schedule").val('');
+        $("#rx_no").val('');
+        $("#manufacturer").val('');
+        $("#prescription").val('');
+        $("#script_no").val('');
+    }
+
+    function copyToVerify() {
+        $("#new_drug").hide();
+        $('#verify').show();
+
+        $("#ndc_span").html($("#ndc").val());
+        $("#name_span").html($("#name").val());
+        $("#soh_span").html("");
+        $("#new_soh_span").html("");
+        $("#date_dispensed_span").html($("#date_dispensed").val());
+//        $("#pharmacists_span").html($("#ndc").val());
+        $("#quantity_span").html($("#quantity").val());
+        $("#drug_schedule_span").html($("#drug_schedule").val());
+        $("#rx_span").html($("#rx_no").val());
+        $("#manufacturer_span").html($("#manufacturer").val());
+        $("#prescription_span").html($("#prescription").val());
+        $("#script_no_span").html($("#script_no").val());
+    }
 </script>
 @stop

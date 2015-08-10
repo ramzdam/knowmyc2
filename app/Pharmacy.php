@@ -33,4 +33,8 @@ class Pharmacy extends Model
 
     }
 
+    public function drugs() {
+        return $this->hasMany('App\Drug');
+    }
+
 }

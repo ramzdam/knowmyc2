@@ -55,5 +55,8 @@
     .list-table{
         font-size: .9em;
     }
+    .error{
+        color: red;
+    }
 
 </style>

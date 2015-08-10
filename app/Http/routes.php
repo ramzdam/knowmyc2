@@ -19,12 +19,13 @@ Route::get('/login', 'UserController@login');
 Route::get('/reports',  ['middleware' => 'auth', 'uses' => 'ReportsController@search']);
 Route::get('/reports/generate', ['middleware' => 'auth', 'uses' => 'ReportsController@generate']);
 Route::get('/logs', ['middleware' => 'auth', 'uses' => 'LogController@index']);
-Route::get('/inventory', ['middleware' => 'auth', 'uses' => 'InventoryController@index']);
-Route::get('/inventory/add', ['middleware' => 'auth', 'uses' => 'InventoryController@add']);
+//Route::get('/inventory', ['middleware' => 'auth', 'uses' => 'InventoryController@index']);
+//Route::get('/inventory/add', ['middleware' => 'auth', 'uses' => 'InventoryController@add']);
 
 // Resource
 Route::resource('accounts', 'AccountsController');
 Route::resource('employee', 'EmployeesController');
+Route::resource('inventory', 'InventoryController');
 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

@@ -26,7 +26,7 @@
                         <li><a href="#">Information</a></li>
                         <li><a href="#">Update</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Signout</a></li>
+                        <li><a href="/auth/logout">Signout</a></li>
                     </ul>
                 </li>
             </ul>
