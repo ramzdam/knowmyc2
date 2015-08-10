@@ -37,7 +37,7 @@ class CreateAccountRequest extends Request
             "pic"             => "required",
             "contact"         => "required",
             "contact_person"  => "required",
-            "email"  => "required|email|unique:pharmacies",
+            "email"           => "required|email|unique:pharmacies",
             "billing_address" => "required",
             "billing_city"    => "required",
             "billing_state"   => "required",

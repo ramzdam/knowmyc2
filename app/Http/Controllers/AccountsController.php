@@ -67,7 +67,6 @@ class AccountsController extends Controller
             "username" => $request->get('username'),
             "password" => $request->get('password'),
             "rights"   => "0",
-            "date_created" => date('Y-m-d')
         ]);
 
 

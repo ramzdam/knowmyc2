@@ -11,8 +11,7 @@ class UserController extends Controller
 {
 
     public function login() {
-        $log_user = "<i>Madzmar</i>";
 
-        return view("user.login", compact('log_user'));
+        return view("user.login");
     }
 }

@@ -19,7 +19,7 @@ class CreateAccountsTable extends Migration
             $table->string('username')->unique();
             $table->string('password', 70);
             $table->string('rights');
-            $table->dateTime('date_created');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
