@@ -334,7 +334,7 @@
                     <hr/>
                     <div><strong>Date Dispensed: </strong><span id="date_dispensed_span">March 28, 1983</span></div>
                     <div><strong>Date Written: </strong><span id="date_written_span">{{ date('Y-m-d H:i:s') }}</span></div>
-                    <div><strong>Pharmacist: </strong><span id="pharmacists_span">{{ session('data.userinfo')->fname }}</span></div>
+                    <div><strong>Pharmacist: </strong><span id="pharmacists_span">@if (session::has('data.userinfo')) {{ session('data.userinfo')->fname }} @endif</span></div>
                     <!--                        <div><strong>Technician: </strong><span id="technician_span">Display selected Technician HERE</span></div>-->
                     <div><strong>Manufacturer: </strong><span id="manufacturer_span">Display Manufacturer HERE</span></div>
                     <div><strong>Prescription: </strong><span id="prescription_span">Display Prescrition HERE</span></div>
