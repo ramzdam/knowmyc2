@@ -1,5 +1,0 @@
-<?php echo HTML::script('js/bootstrap.min.js'); ?>
-
-<?php echo HTML::script('js/npm.js'); ?>
-
-

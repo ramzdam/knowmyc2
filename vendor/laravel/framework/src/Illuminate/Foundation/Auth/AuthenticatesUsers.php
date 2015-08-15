@@ -2,6 +2,7 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Pharmacist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
@@ -50,6 +51,16 @@ trait AuthenticatesUsers
         $credentials = $this->getCredentials($request);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
+            $pharmacist = Pharmacist::findOrFail(Auth::user()->pharmacist_id);
+
+            $user_data = [
+                "userinfo" => $pharmacist,
+                "pharmacy" => $pharmacist->pharmacy
+            ];
+
+            Session::put('data', $user_data);
+
+
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
 

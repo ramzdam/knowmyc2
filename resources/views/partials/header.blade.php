@@ -59,4 +59,10 @@
         color: red;
     }
 
+    .margin-bottom-block{
+        padding: 18px;
+        margin-bottom:10px;
+    }
+
+
 </style>

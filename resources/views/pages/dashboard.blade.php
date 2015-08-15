@@ -1,20 +1,41 @@
 @extends('master')
-@include('partials.sidebar')
 @section('content')
-<div id="dashboard" class="col-md-10">
+<div id="dashboard" class="col-md-12">
     <div class="panel panel-default">
         <div class="panel-heading">Dashboard</div>
         <div class="panel-body">
             <div style="margin-left: 15px;padding: 20px;border-radius:.5em;border: 1px solid #eee;background: #fff;">
-            <h2 style="margin:0;text-align: center;" class="text-uppercase">My C2 Log</h2>
-            <div class="text-center">Controlled Substance Perpetual Inventory Management and Reporting System</div>
-                <form>
-                    <h4 class="text-center jumbotron " style="margin:20px 0 60px 0;color: #666666;">@if (Session::has('data')) {!! Session('data.pharmacy')->name !!} @endif</h4>
-                    <div class="form-group form-group-lg">
-                        <input type="text" class="form-control" id="username" placeholder="Enter the drug NDC" />
-                        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 20px;">Add to log</button>
+                <h2 style="margin:0;text-align: center;" class="text-uppercase">Know My C2</h2>
+                <div class="text-center">Controlled Substance Perpetual Inventory Management and Reporting System</div>
+                <div>
+                    <button class="btn btn-lg btn-warning btn-block margin-bottom-block" data-toggle="modal" data-target="#addDrugModal"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG A DRUG</button>
+                    <button class="btn btn-lg btn-primary btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG INVENTORY</button>
+                    <button class="btn btn-lg btn-info btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG A BROKEN / EXPIRED PILL</button>
+                    <button class="btn btn-lg btn-success btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> REPORTS</button>
+                    <button class="btn btn-lg btn-danger btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> CHECK A DRUG OR RX</button>
+                    <div class="text-center row">
+                        <div class="col-sm-3 bottom-button">
+                            <button class="btn btn-lg btn-default btn-block">Check a Drug</button>
+                        </div>
+                        <div class="col-sm-3 bottom-button">
+                            <button class="btn btn-lg btn-default btn-block">Check a Script</button>
+                        </div>
+                        <div class="col-sm-3 bottom-button">
+                            <button class="btn btn-lg btn-default btn-block">My Account</button>
+                        </div>
+                        <div class="col-sm-3 bottom-button">
+                            <button class="btn btn-lg btn-default btn-block">Helpful Links</button>
+                        </div>
                     </div>
-                </form>
+                </div>
+
+<!--                <form>-->
+<!--                    <h4 class="text-center jumbotron " style="margin:20px 0 60px 0;color: #666666;">@if (Session::has('data')) {!! Session('data.pharmacy')->name !!} @endif</h4>-->
+<!--                    <div class="form-group form-group-lg">-->
+<!--                        <input type="text" class="form-control" id="username" placeholder="Enter the drug NDC" />-->
+<!--                        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 20px;">Add to log</button>-->
+<!--                    </div>-->
+<!--                </form>-->
             </div>
         </div>
         <div class="panel-footer">
@@ -28,5 +49,4 @@
         </div>
     </div>
 </div>
-
 @stop

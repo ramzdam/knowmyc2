@@ -18,6 +18,7 @@
             <div class="alert alert-success">{{ Session::get('flash_message') }}</div>
             @endif
             @yield('content')
+            @yield('modal')
         </div>
     </div>
     @include('partials.footer')

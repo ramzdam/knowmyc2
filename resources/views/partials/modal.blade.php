@@ -289,8 +289,8 @@
                         <div><strong>Pharmacist: </strong><span id="pharmacists_span">{{ session('data.userinfo')->fname }}</span></div>
 <!--                        <div><strong>Technician: </strong><span id="technician_span">Display selected Technician HERE</span></div>-->
                         <div><strong>Manufacturer: </strong><span id="manufacturer_span">Display Manufacturer HERE</span></div>
-                        <div><strong>Manufacturer: </strong><span id="prescription_span">Display Manufacturer HERE</span></div>
-                        <div><strong>Manufacturer: </strong><span id="script_no_span">Display Script No. HERE</span></div>
+                        <div><strong>Prescription: </strong><span id="prescription_span">Display Prescrition HERE</span></div>
+                        <div><strong>Script #: </strong><span id="script_no_span">Display Script No. HERE</span></div>
                         <div><strong>Dispensed QTY: </strong><span id="quantity_span">284 Quantity dispensed</span></div>
                         <div><strong>Drug Schedule: </strong><span id="drug_schedule_span">Display Drug Schedule</span></div>
                         <div><strong>Prescription & Display RX#: </strong><span id="rx_span">Here won't display if the log is for Broken Pill or RTS</span></div>
