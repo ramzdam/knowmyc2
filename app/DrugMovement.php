@@ -6,7 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class DrugMovement extends Model
 {
-    protected $fillable = array('drug_id', 'pharmacist_id', 'quantity', 'type');
+    protected $fillable = array('drug_id',
+                                'pharmacist_id',
+                                'dea_no',
+                                'rx_no',
+                                'invoice_no',
+                                'quantity',
+                                'other_manufacturer',
+                                'manufacturer',
+                                'type',
+                                'date_in');
     //
     public function drug() {
         return $this->belongsTo('App\Drug');

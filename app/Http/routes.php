@@ -19,6 +19,8 @@ Route::get('/login', 'UserController@login');
 Route::get('/reports',  ['middleware' => 'auth', 'uses' => 'ReportsController@search']);
 Route::get('/reports/generate', ['middleware' => 'auth', 'uses' => 'ReportsController@generate']);
 Route::get('/logs', ['middleware' => 'auth', 'uses' => 'LogController@index']);
+Route::get('/inventory/logDrug', ['middleware' => 'auth', 'uses' => 'InventoryController@logDrug']);
+Route::post('/inventory/dispense', ['middleware' => 'auth', 'uses' => 'InventoryController@dispense']);
 //Route::get('/inventory', ['middleware' => 'auth', 'uses' => 'InventoryController@index']);
 //Route::get('/inventory/add', ['middleware' => 'auth', 'uses' => 'InventoryController@add']);
 

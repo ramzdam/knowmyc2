@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Drug;
+use App\DrugMovement;
 use App\Http\Requests\CreateDrugRequest;
+use App\Http\Requests\DispenseDrugRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -35,7 +37,21 @@ class InventoryController extends Controller
      */
     public function create()
     {
-        return view('inventory.create');
+        $pharmacists = Session::get('data.pharmacy')->pharmacists;
+
+        return view('inventory.create', compact('pharmacists'));
+    }
+
+    /**
+     * Show the form for creating a drug log.
+     *
+     * @return Response
+     */
+    public function logDrug()
+    {
+        $pharmacists = Session::get('data.pharmacy')->pharmacists;
+
+        return view('inventory.log-drug', compact('pharmacists'));
     }
 
     /**
@@ -47,21 +63,52 @@ class InventoryController extends Controller
     public function store(CreateDrugRequest $request)
     {
 
-        $drug = Drug::create([
-            "pharmacy_id" => Session::get('data.pharmacy')->id,
-            "name" => $request->get('name'),
-            "quantity" => $request->get('quantity'),
-            "NDC" => $request->get('ndc'),
-            "rx_no" => $request->get('rx_no'),
-            "drug_schedule" => $request->get('drug_schedule'),
-            "prescription" => $request->get('prescription'),
-            "script_no" => $request->get('script_no'),
+        $manufacturer = $request->get('pharmacy');
+        if ($request->get('other')) {
+            $manufacturer = $request->get('other_pharmacy');
+        }
 
+        $drug = Drug::where('ndc', $request->get('ndc'))->first();
+
+        if (count($drug) == 0) {
+            // No records yet
+            $drug = Drug::create([
+                    "pharmacy_id"     => Session::get('data.pharmacy')->id,
+                    "ndc"             => $request->get('ndc'),
+                    "name"            => '',
+                    "strength"        => '',
+                    "form"            => '',
+                    "quantity"        => $request->get('quantity'),
+                    "threshold_alert" => $request->get('threshold'),
+                    "dea_no"          => $request->get('dea'),
+                    "manufacturer"    => $manufacturer,
+                    "created_at"      => $request->get('date_dispensed'),
+                ]);
+        } else {
+            if ($request->get('to_from') == 'from') {
+                $drug->quantity += $request->get('quantity');
+            } else {
+                $drug->quantity -= $request->get('quantity');
+
+            }
+        }
+
+        $drug_movements = new DrugMovement([
+            "pharmacist_id"       => $request->get('pharmacist'),
+            "dea_no"              => $request->get('dea'),
+            "rx_no"               => '',
+            "invoice_no"          => $request->get('invoice'),
+            "quantity"            => $request->get('quantity'),
+            "other_manufacturer"  => ($request->get('other')) ? "1" : "0",
+            "manufacturer"        => $manufacturer,
+            "type"                => (($request->get('to_from') == 'from') ? Drug::INCOMING : Drug::OUTGOING),
+            "date_in"             => $request->get("date_dispensed"),
         ]);
 
+
+        $drug->drugMovements()->save($drug_movements);
         $drug->save();
-//        Session::flash('flash_message', 'Registration Successful!');
-        return array('success' => true, 'message' => 'Registration successful');
+        return response()->json(['success' => true, 'message' => 'Inventory log has been added']);
     }
 
     /**
@@ -104,8 +151,46 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($id = '')
     {
         //
+        return response()->json(['success' => true, 'message' => 'done']);
+    }
+
+    /**
+     * Log the drug for dispensing of customer
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function dispense(DispenseDrugRequest $request)
+    {
+        $drug = Drug::where('ndc', $request->get('ndc'))->first();
+
+        if (count($drug) == 0) {
+            return response()->json(['success' => false, 'message' => 'NDC is invalid or no record yet']);
+        }
+
+        if ($request->get('chk_return')) {
+            $drug->quantity += $request->get('quantity');
+        } else {
+            $drug->quantity -= $request->get('quantity');
+        }
+
+        $drug_movements = new DrugMovement([
+            "pharmacist_id"       => $request->get('pharmacist'),
+            "dea_no"              => '',
+            "rx_no"               => $request->get('rx_no'),
+            "invoice_no"          => '',
+            "quantity"            => $request->get('quantity'),
+            "other_manufacturer"  => 0,
+            "manufacturer"        => '',
+            "type"                => ($request->get('chk_return') ? Drug::RTS : Drug::DISPENSE),
+            "date_in"             => $request->get("date_dispensed"),
+        ]);
+
+        $drug->drugMovements()->save($drug_movements);
+        $drug->save();
+        return response()->json(['success' => true, 'message' => 'done']);
     }
 }

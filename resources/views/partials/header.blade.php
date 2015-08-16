@@ -3,6 +3,8 @@
 {!! HTML::style('css/bootstrap.min.css') !!}
 {!! HTML::style('css/bootstrap-theme.min.css') !!}
 {!! HTML::style('css/jquery-ui.min.css') !!}
+{!! HTML::style('css/normalize.css') !!}
+
 <style>
     body{
         background: #f5f5f5;
@@ -62,6 +64,9 @@
     .margin-bottom-block{
         padding: 18px;
         margin-bottom:10px;
+    }
+    .panel{
+        border: none;
     }
 
 

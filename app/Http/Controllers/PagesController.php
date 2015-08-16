@@ -20,18 +20,8 @@ class PagesController extends Controller
 
     public function index() {
 
-        $pharmacist = Pharmacist::findOrFail(Auth::user()->pharmacist_id);
+//        $pharmacist = Pharmacist::findOrFail(Auth::user()->pharmacist_id);
 
-        if (Auth::check() && !Session::has('data')) {
-            $pharmacist = Pharmacist::findOrFail(Auth::user()->pharmacist_id);
-
-            $user_data = [
-                "userinfo" => $pharmacist,
-                "pharmacy" => $pharmacist->pharmacy
-            ];
-
-            Session::put('data', $user_data);
-        }
 //        dd(Session::get('data.userinfo')->id);
         return view('pages.dashboard');
     }

@@ -16,14 +16,13 @@ class CreateDrugTable extends Migration
             $table->increments('id');
             $table->integer('pharmacy_id')->unsigned()->index();
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
+            $table->string('ndc', 40);
             $table->string('name');
+            $table->string('strength');
+            $table->string('form');
             $table->integer('quantity');
-            $table->string('NDC', 40);
-            $table->string('rx_no', 40);
-            $table->dateTime('drug_schedule');
+            $table->integer('threshold_alert');
             $table->string('manufacturer');
-            $table->string('prescription');
-            $table->string('script_no');
             $table->timestamps();
         });
     }

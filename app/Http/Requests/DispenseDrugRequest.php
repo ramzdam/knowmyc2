@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class CreateDrugRequest extends Request
+class DispenseDrugRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,11 @@ class CreateDrugRequest extends Request
     public function rules()
     {
         return [
-            "ndc"            => "required",
-            "threshold"      => "required|numeric",
-            "invoice"        => "required",
-            "quantity"       => "required|numeric",
-            "dea"            => "required",
+            "ndc" => "required",
+            "quantity" => "required|numeric",
+            "rx_no" => "required",
             "date_dispensed" => "required",
-            "to_from"        => "required",
+            "date_written" => "required",
         ];
     }
 }

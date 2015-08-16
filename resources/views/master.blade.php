@@ -7,19 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>C2Log</title>
     @include('partials.header')
+
 </head>
 <body>
     @include('partials.nav')
     <div>
-
-        <div class="navigation-sidebar">@yield('sidebar')</div>
-        <div class="container-fluid">
+        <div id="content">
+            @yield('content')
+        </div>
+        <?php /*<div id="content" class="container-fluid">
             @if (Session::has('flash_message'))
             <div class="alert alert-success">{{ Session::get('flash_message') }}</div>
             @endif
-            @yield('content')
-            @yield('modal')
+
+
         </div>
+        */?>
     </div>
     @include('partials.footer')
 </body>

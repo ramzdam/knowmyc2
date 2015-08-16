@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Drug extends Model
 {
-    protected $fillable = array('pharmacy_id', 'name', 'quantity', 'NDC', 'rx_no', 'drug_schedule', 'prescription', 'script_no');
+    const INCOMING = 1;
+    const OUTGOING = 2;
+    const DISPENSE = 3;
+    const RTS = 4;
+    const BROKEN = 5;
+    const EXPIRED = 6;
+    protected $fillable = array('pharmacy_id', 'ndc', 'name', 'strength', 'form', 'quantity', 'threshold_alert', 'manufacturer');
 
 
     public function drugMovements() {

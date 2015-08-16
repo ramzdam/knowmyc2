@@ -8,23 +8,23 @@
                 <h2 style="margin:0;text-align: center;" class="text-uppercase">Know My C2</h2>
                 <div class="text-center">Controlled Substance Perpetual Inventory Management and Reporting System</div>
                 <div>
-                    <button class="btn btn-lg btn-warning btn-block margin-bottom-block" data-toggle="modal" data-target="#addDrugModal"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG A DRUG</button>
-                    <button class="btn btn-lg btn-primary btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG INVENTORY</button>
-                    <button class="btn btn-lg btn-info btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG A BROKEN / EXPIRED PILL</button>
-                    <button class="btn btn-lg btn-success btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> REPORTS</button>
-                    <button class="btn btn-lg btn-danger btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> CHECK A DRUG OR RX</button>
+                    <button id="btn_log_drug" class="btn btn-lg btn-warning btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG A DRUG</button>
+                    <button id="btn_log_inventory" class="btn btn-lg btn-primary btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG INVENTORY</button>
+                    <button id="btn_log_broken" class="btn btn-lg btn-info btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG A BROKEN / EXPIRED PILL</button>
+                    <button id="btn_reports" class="btn btn-lg btn-success btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> REPORTS</button>
+                    <button id="btn_check_drug_rx" class="btn btn-lg btn-danger btn-block margin-bottom-block"><i class="glyphicon glyphicon-log-in pull-left"></i> CHECK A DRUG OR RX</button>
                     <div class="text-center row">
                         <div class="col-sm-3 bottom-button">
-                            <button class="btn btn-lg btn-default btn-block">Check a Drug</button>
+                            <button id="btn_check_drug" class="btn btn-lg btn-default btn-block">Check a Drug</button>
                         </div>
                         <div class="col-sm-3 bottom-button">
-                            <button class="btn btn-lg btn-default btn-block">Check a Script</button>
+                            <button id="btn_check_rx" class="btn btn-lg btn-default btn-block">Check a Script</button>
                         </div>
                         <div class="col-sm-3 bottom-button">
-                            <button class="btn btn-lg btn-default btn-block">My Account</button>
+                            <button id="btn_account" class="btn btn-lg btn-default btn-block">My Account</button>
                         </div>
                         <div class="col-sm-3 bottom-button">
-                            <button class="btn btn-lg btn-default btn-block">Helpful Links</button>
+                            <button id="btn_links" class="btn btn-lg btn-default btn-block">Helpful Links</button>
                         </div>
                     </div>
                 </div>

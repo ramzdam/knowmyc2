@@ -11,10 +11,18 @@ use Carbon\Carbon;
 use App\Http\Requests;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Session;
 
 class AccountsController extends Controller
 {
+    public function __construct() {
+        // Already logged in? Go back to previous page
+
+
+    }
+
     public function register() {
         return view('accounts.register');
     }
@@ -22,10 +30,15 @@ class AccountsController extends Controller
     public function index() {
 //        dd(date('Y-m-d H:i:s'));
 //        dd(Carbon::now());
+
         return redirect('accounts/create');
     }
 
     public function create() {
+        if (Auth::check()) {
+
+            return Redirect::back();
+        }
         return view('accounts.create');
     }
 
@@ -70,9 +83,8 @@ class AccountsController extends Controller
         ]);
 
 
-
         $pharmacy->pharmacists()->save($pharmacists)->account()->save($account);
         Session::flash('flash_message', 'Registration Successful!');
-        return redirect('/login');
+        return Redirect::guest('/');
     }
 }
