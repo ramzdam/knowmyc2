@@ -16,7 +16,7 @@
 <form id="login" role="form" method="POST" action="/auth/login">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-        <h1 class="text-uppercase text-center"><strong>C2Log Sign In</strong></h1>
+        <h1 class="text-uppercase text-center"><strong>KnowMyC2 Sign In</strong></h1>
         <div class="form-group">
             <label for="username"><i class="glyphicon glyphicon-user"></i> Username</label>
             <input type="text" class="form-control" id="username" name="username" placeholder="Username" />

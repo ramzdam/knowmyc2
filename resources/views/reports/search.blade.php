@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <div class="form-group text-center" style="margin-top: 40px;">
-                        <button class="btn btn-lg btn-primary" type="submit">Preview It</button>
+                        <button class="btn btn-lg btn-primary btn_subpage" data-url="/reports/generate" type="button">Preview It</button>
                     </div>
                 </form>
 
