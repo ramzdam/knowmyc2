@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Drug;
 use App\DrugMovement;
 use App\Http\Requests\CreateDrugRequest;
+use App\Http\Requests\DispenseBrokenDrugRequest;
 use App\Http\Requests\DispenseDrugRequest;
 use Illuminate\Http\Request;
 
@@ -55,6 +56,42 @@ class InventoryController extends Controller
     }
 
     /**
+     * Show the form for creating a broken/expired drug log.
+     *
+     * @return Response
+     */
+    public function logBroken()
+    {
+        $pharmacists = Session::get('data.pharmacy')->pharmacists;
+
+        return view('inventory.log-broken', compact('pharmacists'));
+    }
+
+    /**
+     * Get curretn Stock On Hand (SOH)
+     *
+     * @return Response
+     */
+    public function getSoh(Request $request)
+    {
+        $drug = Drug::where('ndc', $request->get('ndc'))->first();
+        $quantity = 0;
+        $message = 'Invalid NDC or NDC not recorded yet';
+        $success = false;
+        if (count($drug) > 0) {
+            $quantity = $drug->quantity;
+            $message = 'NDC found!';
+            $success = true;
+        }
+
+        $soh = $quantity;
+        $positive_soh = $quantity + $request->get('quantity');
+        $negative_soh = $quantity - $request->get('quantity');
+
+        return response()->json(compact('success','message','soh','positive_soh','negative_soh'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
@@ -71,6 +108,10 @@ class InventoryController extends Controller
         $drug = Drug::where('ndc', $request->get('ndc'))->first();
 
         if (count($drug) == 0) {
+            if ($request->get('to_from') == 'to') {
+                return response()->json(['success' => false, 'message' => 'NDC Invalid, No drugs available to dispense to other manufacturer']);
+            }
+
             // No records yet
             $drug = Drug::create([
                     "pharmacy_id"     => Session::get('data.pharmacy')->id,
@@ -90,6 +131,9 @@ class InventoryController extends Controller
             } else {
                 $drug->quantity -= $request->get('quantity');
 
+                if ($drug->quantity < 0) {
+                    return response()->json(['success' => false, 'message' => 'Available drugs are lesser than selected dispense quantity']);
+                }
             }
         }
 
@@ -186,6 +230,40 @@ class InventoryController extends Controller
             "other_manufacturer"  => 0,
             "manufacturer"        => '',
             "type"                => ($request->get('chk_return') ? Drug::RTS : Drug::DISPENSE),
+            "date_in"             => $request->get("date_dispensed"),
+        ]);
+
+        $drug->drugMovements()->save($drug_movements);
+        $drug->save();
+        return response()->json(['success' => true, 'message' => 'done']);
+    }
+
+    /**
+     * Log the drug for dispensing of customer
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function dispenseBroken(DispenseBrokenDrugRequest $request)
+    {
+
+        $drug = Drug::where('ndc', $request->get('ndc'))->first();
+
+        if (count($drug) == 0) {
+            return response()->json(['success' => false, 'message' => 'NDC is invalid or no record yet']);
+        }
+
+        $drug->quantity -= $request->get('quantity');
+
+        $drug_movements = new DrugMovement([
+            "pharmacist_id"       => $request->get('pharmacist'),
+            "dea_no"              => '',
+            "rx_no"               => '',
+            "invoice_no"          => '',
+            "quantity"            => $request->get('quantity'),
+            "other_manufacturer"  => 0,
+            "manufacturer"        => '',
+            "type"                => $request->get('log_type'),
             "date_in"             => $request->get("date_dispensed"),
         ]);
 

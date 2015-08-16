@@ -28,6 +28,7 @@
         <button type="submit" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Log me in</button>
         <div class="form-group">
             <label class="form-control-static"><a href="/accounts/create">New User ?</a> Register here for your myc2log experience!</label>
+            <label class="form-control-static"><a href="#">I can't access my account</a></label>
         </div>
 
 

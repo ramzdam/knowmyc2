@@ -69,5 +69,15 @@
         border: none;
     }
 
+    .center-loading {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: auto;
+        z-index: 9999;
+        display: none;
+    }
 
 </style>

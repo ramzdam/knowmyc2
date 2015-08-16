@@ -20,6 +20,7 @@
             <th>RX #</th>
             <th>Drug Schedule</th>
             <th>Manufacturer</th>
+            <th>Edit</th>
         </tr>
         </thead>
         <tbody>
@@ -32,6 +33,7 @@
                 <td>{{ $drug->rx_no }}</td>
                 <td>{{ $drug->drug_schedule }}</td>
                 <td>{{ $drug->manufacturer }}</td>
+                <td><a href="#" data-id="{{ $drug->id }}" class="btn btn-success edit">Edit</a> </td>
             </tr>
 
         @endforeach
@@ -39,7 +41,6 @@
         </tbody>
     </table>
 </div>
-@include('partials.modal')
 <script>
     $('#addDrugModal').on('show.bs.modal', function (event) {
         $("#verify").hide();
@@ -59,6 +60,9 @@
         }
         return false;
     });
+    $(".edit").on("click", function(event) {
+
+    })
 
 
     function submit($form) {
@@ -68,12 +72,17 @@
             dataType: 'json',
             type: 'POST',
             data: $form.serialize(),
+            beforeSend: function() {
+                $(".center-loading").fadeIn();
+            },
             success: function(response) {
                 if (response.success) {
                     alert(response.message);
                     window.location.href = '/inventory';
                 }
             }
+        }).done(function() {
+            $(".center-loading").hide();
         }).error(function(data){
             var errors = data.responseJSON;
             div = "<div id='error_message'>";

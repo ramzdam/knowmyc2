@@ -4,6 +4,11 @@
         <div class="panel panel-primary">
             <div class="panel-heading">LOG INVENTORY ITEM <span id="status_message"></span></div>
             <div class="panel-body">
+                <div class="alert alert-danger error_container" role="alert" style="display: none;">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    <span class="error_message">Enter a valid email address</span>
+                </div>
                 {!! Form::open(['url' => 'inventory', 'id' => 'new_drug_frm']) !!}
                     <div id="new_drug">
                         <div class="form-group">
@@ -84,7 +89,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-success btn-lg btn-block text-uppercase" data-toggle="modal" data-target="#verify"><i class="glyphicon glyphicon-floppy-disk"></i> Log It</button>
+                        <button type="button" class="btn btn-success btn-lg btn-block text-uppercase" id="bnt_verify"><i class="glyphicon glyphicon-floppy-disk"></i> Log It</button>
                     </div>
 
                 {!! Form::close() !!}
@@ -107,32 +112,37 @@
 //            console.log($("input:radio[name=to_from]:checked").val());
         });
 
-        $('#verify').on('show.bs.modal', function (event) {
-            copyPopulatedFields();
+        $('#bnt_verify').on('click', function (event) {
+            var $data = $("#new_drug_frm").serialize();
+            $.ajax({
+                url: 'inventory/soh',
+                type: 'POST',
+                dataType: 'json',
+                data: $data,
+                beforeSend: function() {
+                    $(".center-loading").fadeIn();
+                },
+                success: function(response) {
+                    var soh = response.soh || 0;
+                    var radio_selected = $("input:radio[name=to_from]:checked").val();
+                    var next_soh = response.positive_soh;
+
+                    copyPopulatedFields();
+                    $("#span_soh").html(soh);
+                    if (radio_selected == "to") {
+                        next_soh = response.negative_soh;
+                    }
+                    $("#span_newsoh").html(next_soh);
+                    $("#verify").modal('show');
+                }
+            }).done(function() {
+                $(".center-loading").hide();
+            });
         });
 
 
         $("#logit").on('click', function() {
-            var $data = $("#new_drug_frm").serialize();
-
-            $.ajax({
-                url: $("#new_drug_frm").attr('action'),
-                type: 'POST',
-                dataType: 'json',
-                data: $data,
-                success: function(response) {
-
-                    $message = $("#status_message").html(response.message)
-                    if (response.success) {
-                        $message.removeClass('error').addClass("success").fadeIn();
-                    } else {
-                        $message.removeClass('success').addClass("error").fadeIn();
-                    }
-                }
-            }).error(function(error_reply) {
-                var errors = error_reply.responseJSON;
-                console.log(errors);
-            });
+            logIt("#new_drug_frm")
         });
     });
 

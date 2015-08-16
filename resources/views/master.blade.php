@@ -12,6 +12,7 @@
 <body>
     @include('partials.nav')
     <div>
+        <div class="center-loading">{!! HTML::image('images/ajax-loader.gif') !!}</div>
         <div id="content">
             @yield('content')
         </div>

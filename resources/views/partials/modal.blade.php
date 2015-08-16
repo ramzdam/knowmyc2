@@ -19,8 +19,9 @@
                 <div><strong>Technician: </strong><span id="span_technician">Display selected Technician HERE</span></div>
                 <div><strong>Dispensed QTY: </strong><span id="span_qty">284 Quantity dispensed</span></div>
                 <div><strong>Drug Schedule: </strong><span id="span_schedule">Display Drug Schedule</span></div>
+                @if ($page != 'log_broken')
                 <div><strong>Prescription & Display RX#: </strong><span id="span_rx">Here won't display if the log is for Broken Pill or RTS</span></div>
-
+                @endif
             </div>
             <div class="modal-footer">
                 <!--                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
@@ -31,6 +32,7 @@
 </div>
 <script>
     function copyPopulatedFields() {
+
         $("#span_ndc").html($("#ndc").val());
         $("#span_name").html($("#name").val());
         $("#span_soh").html('');
@@ -42,5 +44,6 @@
         $("#span_qty").html($("#quantity").val());
         $("#span_schedule").html('');
         $("#span_rx").html($("#rx_no").val());
+
     }
 </script>

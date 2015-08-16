@@ -1,14 +1,15 @@
 {!! HTML::script('js/bootstrap.min.js') !!}
 {!! HTML::script('js/npm.js') !!}
 <script>
-    $(document).ready(function() {
-        $("#btn_log_drug").on('click', function() {
-            load_subpage("inventory/logDrug");
-        });
+    $(document).on('click', '.btn_subpage', function () {
+        var attr = $(this).attr('data-url');
 
-        $("#btn_log_inventory").on('click', function() {
-            load_subpage("inventory/create");
-        });
+        if (typeof attr !== typeof undefined && attr !== false) {
+            if (attr != '') {
+                load_subpage(attr);
+            }
+        }
+        return false;
     });
 
     function load_subpage(view) {
@@ -16,12 +17,72 @@
             type: "GET",
             dataType: "html",
             url: view,
+            beforeSend: function() {
+                $(".center-loading").fadeIn();
+            },
             success: function(response) {
                 $("#content").html(response);
             }
+        }).done(function() {
+            $(".center-loading").hide();
         }).error(function(data) {
             console.log(data);
         });
+    }
+
+    function showMessage(message, success, datas) {
+        msg = message || "Sorry an error has occured";
+        is_success = success || false;
+        array_data = datas || {};
+
+        if (is_success) {
+            $(".error_container").removeClass('alert-danger').addClass('alert-success');
+        }
+
+        $(".error_message").html(msg);
+        $(".error_container").fadeIn();
+    }
+
+    function logIt(form_name) {
+
+        var $data = $(form_name).serialize();
+
+        $.ajax({
+            url: $(form_name).attr('action'),
+            type: 'POST',
+            dataType: 'json',
+            data: $data,
+            beforeSend: function() {
+                $(".center-loading").fadeIn();
+            },
+            success: function(response) {
+                msg = response.message || '';
+                if (response.success) {
+                    showMessage(msg, true);
+                } else {
+                    showMessage(msg);
+                }
+            }
+        }).done(function() {
+            $(".center-loading").hide();
+            $("#verify").modal('hide');
+        }).error(function(error_reply) {
+            var errors = error_reply.responseJSON;
+
+            var ul = '<ul>';
+
+            $.each(errors, function(index, item) {
+                ul += '<li>' + item + '</li>';
+            });
+
+            ul += '</ul>';
+
+            showMessage(ul);
+            $(".center-loading").hide();
+            $("#verify").modal('hide');
+        });
+
+
     }
 </script>
 

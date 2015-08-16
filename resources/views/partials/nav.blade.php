@@ -12,24 +12,26 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+                @if(Auth::check())
                 <li class="active"><a href="/logs">Log A Drug</a></li>
                 <li><a href="/inventory">Log Inventory</a></li>
                 <li><a href="#">Log A Broken/Expired Pill</a></li>
                 <li><a href="/reports">Reports</a></li>
                 <li><a href="#about">Check A Drug</a></li>
                 <li><a href="#about">Check A Script</a></li>
-                <li><a href="#about">My Account</a></li>
+                @endif
                 <li class="dropdown">
                     <a href="#about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Helpful Links <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Information</a></li>
-                        <li><a href="#">Update</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">License and Agreement</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/auth/logout">Signout</a></li>
+                        <li><a href="/auth/logout">Help</a></li>
                     </ul>
                 </li>
 
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
