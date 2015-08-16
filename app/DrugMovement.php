@@ -25,5 +25,11 @@ class DrugMovement extends Model
         return $this->belongsTo('App\Pharmacist');
     }
 
+    public function setDateInAttribute($value) {
+        return date('Y-m-d H:i:s', strtotime($value));
+    }
 
+    public function setCreatedAtAttribute($value) {
+        return date('Y-m-d H:i:s', strtotime($value));
+    }
 }

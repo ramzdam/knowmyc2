@@ -20,7 +20,8 @@
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="control-label text-left" style="text-align: left;"><i class="glyphicon glyphicon-calendar"></i> Date Dispensed </label>
-                            <input type="date" class="form-control date input-lg" id="date_dispensed" name="date_dispensed" value="{{ old('date_dispensed') }}" placeholder="Date Dispensed">
+                            <input type='text' class="form-control input-lg datetime" name="date_dispensed" id="date_dispensed" />
+<!--                            <input type="date" class="form-control date input-lg" id="date_dispensed" name="date_dispensed" value="{{ old('date_dispensed') }}" placeholder="Date Dispensed">-->
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="control-label text-left" style="text-align: left;"><i class="glyphicon glyphicon-calendar"></i> Select Pharmacist</label>
@@ -53,6 +54,7 @@
 @include('partials.modal', array('page' => 'log_broken', 'title' => 'You are logging a drug'));
 <script>
     $(document).ready(function(){
+        $('.datetime').datetimepicker();
         $("#chk_part2").click(function() {
             if ($(this).is(':checked')) {
                 $("#rx_part2").fadeIn();

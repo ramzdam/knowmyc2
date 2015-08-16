@@ -3,6 +3,7 @@
 {!! HTML::style('css/bootstrap.min.css') !!}
 {!! HTML::style('css/bootstrap-theme.min.css') !!}
 {!! HTML::style('css/jquery-ui.min.css') !!}
+{!! HTML::style('css/bootstrap-datetimepicker.min.css') !!}
 {!! HTML::style('css/normalize.css') !!}
 
 <style>

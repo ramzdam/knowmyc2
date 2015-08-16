@@ -8,10 +8,10 @@
                 <h2 style="margin:0;text-align: center;" class="text-uppercase">Know My C2</h2>
                 <div class="text-center">Controlled Substance Perpetual Inventory Management and Reporting System</div>
                 <div>
-                    <button id="btn_log_drug" class="btn btn-lg btn-warning btn-block margin-bottom-block btn_subpage" data-url="inventory/logDrug"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG A DRUG</button>
-                    <button id="btn_log_inventory" class="btn btn-lg btn-primary btn-block margin-bottom-block btn_subpage" data-url="inventory/create"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG INVENTORY</button>
-                    <button id="btn_log_broken" class="btn btn-lg btn-info btn-block margin-bottom-block btn_subpage" data-url="inventory/broken"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG A BROKEN / EXPIRED PILL</button>
-                    <button id="btn_reports" class="btn btn-lg btn-success btn-block margin-bottom-block btn_subpage" data-url="inventory/logDrug"><i class="glyphicon glyphicon-log-in pull-left"></i> REPORTS</button>
+                    <button id="btn_log_drug" class="btn btn-lg btn-warning btn-block margin-bottom-block btn_subpage" data-url="/inventory/logDrug"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG A DRUG</button>
+                    <button id="btn_log_inventory" class="btn btn-lg btn-primary btn-block margin-bottom-block btn_subpage" data-url="/inventory/create"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG INVENTORY</button>
+                    <button id="btn_log_broken" class="btn btn-lg btn-info btn-block margin-bottom-block btn_subpage" data-url="/inventory/broken"><i class="glyphicon glyphicon-log-in pull-left"></i> LOG A BROKEN / EXPIRED PILL</button>
+                    <button id="btn_reports" class="btn btn-lg btn-success btn-block margin-bottom-block btn_subpage" data-url="/reports"><i class="glyphicon glyphicon-log-in pull-left"></i> REPORTS</button>
                     <button id="btn_check_drug_rx" class="btn btn-lg btn-danger btn-block margin-bottom-block btn_subpage" data-url="inventory/logDrug"><i class="glyphicon glyphicon-log-in pull-left"></i> CHECK A DRUG OR RX</button>
                     <div class="text-center row">
                         <div class="col-sm-3 bottom-button">

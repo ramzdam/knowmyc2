@@ -1,4 +1,6 @@
 {!! HTML::script('js/bootstrap.min.js') !!}
+{!! HTML::script('js/moment.min.js') !!}
+{!! HTML::script('js/bootstrap-datetimepicker.min.js') !!}
 {!! HTML::script('js/npm.js') !!}
 <script>
     $(document).on('click', '.btn_subpage', function () {

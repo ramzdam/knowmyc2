@@ -22,4 +22,8 @@ class Drug extends Model
     public function pharmacy() {
         return $this->belongsTo('App\Pharmacy');
     }
+
+    public function setCreatedAtAttribute($value) {
+        return date('Y-m-d H:i:s', strtotime($value));
+    }
 }

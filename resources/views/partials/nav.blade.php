@@ -13,10 +13,10 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 @if(Auth::check())
-                <li class="active"><a href="/logs">Log A Drug</a></li>
-                <li><a href="/inventory">Log Inventory</a></li>
-                <li><a href="#">Log A Broken/Expired Pill</a></li>
-                <li><a href="/reports">Reports</a></li>
+                <li class="active"><a href="#" class="btn_subpage" data-url="/inventory/logDrug">Log A Drug</a></li>
+                <li><a href="#" class="btn_subpage" data-url="/inventory/create">Log Inventory</a></li>
+                <li><a href="#" class="btn_subpage" data-url="/inventory/broken">Log A Broken/Expired Pill</a></li>
+                <li><a href="#" class="btn_subpage" data-url="/reports">Reports</a></li>
                 <li><a href="#about">Check A Drug</a></li>
                 <li><a href="#about">Check A Script</a></li>
                 @endif

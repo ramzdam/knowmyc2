@@ -32,12 +32,12 @@
         <div class="panel-heading">Pharmacy Physical/Shipping Address(all fields are required)</div>
         <div class="panel-body">
             <div class="form-group @if ($errors->has('name')) has-error @endif">
-                <label for="name"><i class="glyphicon glyphicon-user"></i> Name</label>
+                <label for="name"><i class="glyphicon glyphicon-user"></i> Pharmacy Name</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ Input::old('name') }}" placeholder="Enter Pharmacy Name Here" />
                 @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
             </div>
             <div class="form-group @if ($errors->has('address')) has-error @endif">
-                <label for="address"><i class="glyphicon glyphicon-user"></i> Street Address</label>
+                <label for="address"><i class="glyphicon glyphicon-user"></i> Company Street Address</label>
                 <input type="text" class="form-control" id="address" name="address" value="{{ Input::old('address') }}" placeholder="Enter Pharmacy Street Address Here" />
                 @if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
             </div>
@@ -82,7 +82,7 @@
                     @if ($errors->has('pic')) <p class="help-block">{{ $errors->first('pic') }}</p> @endif
                 </div>
                 <div class="col-md-4 @if ($errors->has('contact')) has-error @endif" >
-                    <label for="contact"><i class="glyphicon glyphicon-user"></i> Contact</label>
+                    <label for="contact"><i class="glyphicon glyphicon-user"></i> Company Contact #</label>
                     <input type="text" class="form-control" id="contact" name="contact" value="{{ Input::old('contact') }}" placeholder="Contact" />
                     @if ($errors->has('contact')) <p class="help-block">{{ $errors->first('contact') }}</p> @endif
                 </div>
@@ -93,7 +93,7 @@
                 </div>
             </div>
             <div class="form-group @if ($errors->has('email')) has-error @endif">
-                <label for="email"><i class="glyphicon glyphicon-user"></i> Pharmacy Email:</label>
+                <label for="email"><i class="glyphicon glyphicon-user"></i> Primary Email:</label>
                 <input type="email" class="form-control" id="email" name="email" value="{{ Input::old('email') }}" placeholder="Enter Pharmacy Email Here" />
                 @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
             </div>
