@@ -28,17 +28,17 @@ class Pharmacy extends Model
 
                             );
 
-//    public function pharmacists() {
-//        return $this->hasMany('App\Pharmacist');
-//
-//    }
+    public function pharmacists() {
+        return $this->hasMany('App\Pharmacist');
+
+    }
 
     public function drugs() {
         return $this->hasMany('App\Drug');
     }
 
-    public function pharmacists() {
-        return $this->hasManyThrough('App\Pharmacist', 'App\Account');
-    }
+//    public function pharmacists() {
+//        return $this->hasManyThrough('App\Pharmacist', 'App\Account');
+//    }
 
 }
