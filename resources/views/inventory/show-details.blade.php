@@ -4,9 +4,6 @@
         <form class="form-group form-inline well">
 <!--        <input type="text" class="form-control col-sm-8" placeholder="Type drug name here" />-->
 <!--        <a href="#" class="btn btn-default"  style="vertical-align: middle;" data-toggle="modal" data-target="#logVerificationModal"><i class="glyphicon glyphicon-search"></i> Search Drug </a>-->
-        <a href="#" class="btn btn-success btn_subpage btn-lg" data-url="inventory/add"  style="vertical-align: middle;"><i class="glyphicon glyphicon-plus-sign"></i> ADD DRUG </a>
-        </form>
-        <div class="table-responsive">
             <table class="table table-striped list-table">
                 <thead>
                 <tr>
@@ -16,11 +13,10 @@
                     <th>Manufacturer</th>
                     <th>NDC</th>
                     <th>SOH</th>
-                    <th>Edit</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($drugs as $drug)
+                @if ($drug)
                 <tr>
                     <td>{{ $drug->name }}</td>
                     <td>{{ $drug->strength }}</td>
@@ -28,7 +24,44 @@
                     <td>{{ $drug->manufacturer }}</td>
                     <td>{{ $drug->ndc }}</td>
                     <td>{{ $drug->quantity }}</td>
-                    <td><a href="#" class="btn btn-info edit btn_subpage" data-url="/inventory/{{ Crypt::encrypt($drug->id) }}"><i class="glyphicon glyphicon-search"></i> View </a> </td>
+                </tr>
+
+                @endif
+
+                </tbody>
+            </table>
+        </form>
+        <div class="table-responsive">
+            <table id="logtable" class="table table-striped list-table">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>QTY</th>
+                    <th>RX#</th>
+                    <th>Supplier</th>
+                    <th>Invoice #</th>
+                    <th>Supplier DEA</th>
+                    <th>RPH</th>
+                    <th>Tech</th>
+                    <th>DEA Order #</th>
+                    <th>SOH</th>
+                    <th>RPH</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($drug_logs as $log)
+                <tr>
+                    <td>{{ $log->date_in }}</td>
+                    <td>{{ $log->quantity }}</td>
+                    <td>{{ $log->rx_no }}</td>
+                    <td>{{ $log->manufacturer }}</td>
+                    <td>{{ $log->invoice_no }}</td>
+                    <td>{{ $log->dea_no }}</td>
+                    <td></td>
+                    <td>{{ $log->pharmacist->fname }}</td>
+                    <td>{{ $log->dea_no }}</td>
+                    <td>{{ $log->current_soh }}</td>
+                    <td></td>
                 </tr>
 
                 @endforeach
@@ -39,7 +72,7 @@
     </div>
 </div>
 <script>
-    $('.list-table').DataTable();
+    $('#logtable').DataTable();
     $('#addDrugModal').on('show.bs.modal', function (event) {
         $("#verify").hide();
     });

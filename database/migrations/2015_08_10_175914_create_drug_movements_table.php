@@ -22,6 +22,7 @@ class CreateDrugMovementsTable extends Migration
             $table->string('rx_no', 40); // Prescription or script_no of purchase
             $table->string('invoice_no'); // Receipt number
             $table->integer('quantity');
+            $table->integer('current_soh');
             $table->integer('other_manufacturer')->unsigned();
             $table->string('manufacturer')->nullable();
             $table->integer('type'); // 1 = incoming, 2 = outgoing, 3 = Dispensed, 4 = Returned, 5 = Broken, 6 = Expired

@@ -12,14 +12,16 @@
                 {!! Form::open(['url' => 'inventory', 'id' => 'new_drug_frm']) !!}
                     <div id="new_drug">
                         <div class="form-group">
-                            <input type="text" class="form-control input-lg" id="ndc" name="ndc" value="{{ old('ndc') }}" placeholder="Scan or type NDC">
+                            <select class="select2 form-control" name="ndc" id="ndc" placeholder="-- No drugs registered yet --">
+                                @forelse($drugs as $drug)
+                                <option value="{{ $drug->ndc }}">{{ $drug->ndc }}</option>
+                                @empty
+                                <option>-- No drugs registered yet --</option>
+                                @endforelse
+                            </select>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control input-lg" id="invoice" name="invoice" value="{{ old('invoice') }}" placeholder="Enter Invoice Number">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="control-label text-left" style="text-align: left;"> Threshold alert </label>
-                            <input type="text" class="form-control input-lg" id="threshold" name="threshold" value="{{ old('threshold') }}" placeholder="Minimum amount to alert">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control input-lg" id="quantity" name="quantity" value="{{ old('quantity') }}" placeholder="QTY Added or Return">

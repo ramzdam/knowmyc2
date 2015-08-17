@@ -13,7 +13,7 @@
                     <div id="new_drug">
                         <div class="form-group">
 <!--                            <input type="text" class="form-control input-lg" id="ndc" name="ndc" value="{{ old('ndc') }}" placeholder="Scan or Type NDC">-->
-                            <select class="select2 form-control" name="ndc" placeholder="-- No drugs registered yet --">
+                            <select class="select2 form-control" id="ndc" name="ndc" placeholder="-- No drugs registered yet --">
                                 @forelse($drugs as $drug)
                                 <option value="{{ $drug->ndc }}">{{ $drug->ndc }}</option>
                                 @empty
@@ -22,7 +22,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="inputEmail3" class="control-label text-left" style="text-align: left;"> Beginning inventory </label>
+                            <label for="inputEmail3" class="control-label text-left" style="text-align: left;"> Quantity to log </label>
                             <input type="text" class="form-control input-lg" id="quantity" name="quantity" value="{{ old('quantity') }}" placeholder="Dispensed Quantity">
                         </div>
                         <div class="form-group">

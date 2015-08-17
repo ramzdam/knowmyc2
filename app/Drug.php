@@ -2,7 +2,9 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class Drug extends Model
 {
@@ -12,6 +14,7 @@ class Drug extends Model
     const RTS = 4;
     const BROKEN = 5;
     const EXPIRED = 6;
+    const ADD = 7;
     protected $fillable = array('pharmacy_id', 'ndc', 'name', 'strength', 'form', 'quantity', 'threshold_alert', 'manufacturer');
 
 
@@ -24,6 +27,13 @@ class Drug extends Model
     }
 
     public function setCreatedAtAttribute($value) {
-        return date('Y-m-d H:i:s', strtotime($value));
+//        $this->attributes['created_at'] = Carbon::createFromFormat('Y-m-d', date(strtotime($value)));
+        $this->attributes['created_at'] = date('Y-m-d H:i:s', strtotime($value));
+//        return date('Y-m-d H:i:s', strtotime($value));
     }
+
+//    public function getIdAttribute($value) {
+//        return Crypt::encrypt($value);
+//    }
+
 }

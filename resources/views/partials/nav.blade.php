@@ -13,17 +13,17 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 @if(Auth::check())
-                <li class="active"><a href="#" class="btn_subpage" data-url="/inventory/logDrug">Log A Drug</a></li>
-                <li><a href="#" class="btn_subpage" data-url="/inventory/create">Log Inventory</a></li>
-                <li><a href="#" class="btn_subpage" data-url="/inventory/broken">Log A Broken/Expired Pill</a></li>
+                <li class="active"><a href="#" class="btn_subpage" data-url="/inventory/create">Logging</a></li>
                 <li><a href="#" class="btn_subpage" data-url="/reports">Reports</a></li>
-                <li><a href="#about">Check A Drug</a></li>
-                <li><a href="#about">Check A Script</a></li>
+                <li><a href="#" class="btn_subpage" data-url="/inventory">Inventory</a></li>
+                <li><a href="#" class="btn_subpages" data-url="">My Account</a></li>
+                <li><a href="#" class="btn_subpage" data-url="/resources">Resources</a></li>
+                <li><a href="/auth/logout" data-url="/inventory/broken">Signout</a></li>
                 @endif
                 <li class="dropdown">
                     <a href="#about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Helpful Links <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Resources</a></li>
+                        <li><a href="#" class="btn_subpage" data-url="/resources">Resources</a></li>
                         <li><a href="#">License and Agreement</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/auth/logout">Help</a></li>

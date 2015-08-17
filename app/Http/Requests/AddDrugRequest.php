@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CreateDrugRequest extends Request
+class AddDrugRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,6 +15,7 @@ class CreateDrugRequest extends Request
     public function authorize()
     {
         if (Auth::check()) {
+
             return true;
         }
         return false;
@@ -28,12 +29,14 @@ class CreateDrugRequest extends Request
     public function rules()
     {
         return [
+            "name"           => "required",
+            "strength"       => "required",
+            "form"           => "required",
+            "manufacturer"   => "required",
             "ndc"            => "required",
-            "invoice"        => "required",
+            "threshold"      => "required|numeric",
             "quantity"       => "required|numeric",
-            "dea"            => "required",
             "date_dispensed" => "required",
-            "to_from"        => "required",
         ];
     }
 }

@@ -2,6 +2,7 @@
 {!! HTML::script('js/moment.min.js') !!}
 {!! HTML::script('js/bootstrap-datetimepicker.min.js') !!}
 {!! HTML::script('js/select2.full.min.js') !!}
+{!! HTML::script('js/jquery.dataTables.min.js') !!}
 {!! HTML::script('js/npm.js') !!}
 <script>
     $(document).on('click', '.btn_subpage', function () {

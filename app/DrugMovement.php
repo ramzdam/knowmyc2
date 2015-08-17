@@ -12,6 +12,7 @@ class DrugMovement extends Model
                                 'rx_no',
                                 'invoice_no',
                                 'quantity',
+                                'current_soh',
                                 'other_manufacturer',
                                 'manufacturer',
                                 'type',
@@ -26,10 +27,12 @@ class DrugMovement extends Model
     }
 
     public function setDateInAttribute($value) {
-        return date('Y-m-d H:i:s', strtotime($value));
+        $this->attributes['date_in'] = date('Y-m-d H:i:s', strtotime($value));
+//        $this->attributes['date_in'] = Carbon::createFromFormat('Y-m-d', strtotime($value));
     }
 
     public function setCreatedAtAttribute($value) {
-        return date('Y-m-d H:i:s', strtotime($value));
+        $this->attributes['created_at'] = date('Y-m-d H:i:s', strtotime($value));
+//        $this->attributes['created_at'] = Carbon::createFromFormat('Y-m-d', strtotime($value));
     }
 }

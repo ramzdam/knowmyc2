@@ -25,4 +25,8 @@ class PagesController extends Controller
 //        dd(Session::get('data.userinfo')->id);
         return view('pages.dashboard');
     }
+
+    public function resources() {
+        return view('pages.resources');
+    }
 }
