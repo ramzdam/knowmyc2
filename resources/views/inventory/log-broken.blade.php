@@ -36,8 +36,8 @@
                         <div class="form-group">
                             <select class="form-control input-lg" id="log_type" name="log_type">
                                 <option value="">--- Select Broken / Expired ---</option>
-                                <option value="{{ App\DRUG::BROKEN }}">Broken</option>
-                                <option value="{{ App\DRUG::EXPIRED }}">Expired</option>
+                                <option value="5">Broken</option>
+                                <option value="6">Expired</option>
                             </select>
                         </div>
                     </div>
