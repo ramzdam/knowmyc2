@@ -1,6 +1,7 @@
 {!! HTML::script('js/bootstrap.min.js') !!}
 {!! HTML::script('js/moment.min.js') !!}
 {!! HTML::script('js/bootstrap-datetimepicker.min.js') !!}
+{!! HTML::script('js/select2.full.min.js') !!}
 {!! HTML::script('js/npm.js') !!}
 <script>
     $(document).on('click', '.btn_subpage', function () {
@@ -27,9 +28,21 @@
             }
         }).done(function() {
             $(".center-loading").hide();
-        }).error(function(data) {
-            console.log(data);
-        });
+        }).error(function(error_reply) {
+            var errors = error_reply.responseJSON;
+
+            var ul = '<ul>';
+
+            $.each(errors, function(index, item) {
+                ul += '<li>' + item + '</li>';
+            });
+
+            ul += '</ul>';
+
+            showMessage(ul);
+            $(".center-loading").hide();
+            $("#verify").modal('hide');
+        });;
     }
 
     function showMessage(message, success, datas) {

@@ -102,6 +102,7 @@
 @include('partials.modal', array('page' => 'log_inventory', 'title' => 'You are adding an inventory item'));
 <script>
     $(document).ready(function(){
+        $('select').select2();
         $('.datetime').datetimepicker();
         $("#other").click(function() {
             if ($(this).is(":checked")) {
@@ -139,7 +140,21 @@
                 }
             }).done(function() {
                 $(".center-loading").hide();
-            });
+            }).error(function(error_reply) {
+                var errors = error_reply.responseJSON;
+
+                var ul = '<ul>';
+
+                $.each(errors, function(index, item) {
+                    ul += '<li>' + item + '</li>';
+                });
+
+                ul += '</ul>';
+
+                showMessage(ul);
+                $(".center-loading").hide();
+                $("#verify").modal('hide');
+            });;
         });
 
 

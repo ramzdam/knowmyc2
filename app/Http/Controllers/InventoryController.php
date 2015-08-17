@@ -51,8 +51,8 @@ class InventoryController extends Controller
     public function logDrug()
     {
         $pharmacists = Session::get('data.pharmacy')->pharmacists;
-
-        return view('inventory.log-drug', compact('pharmacists'));
+        $drugs = Drug::all('*');
+        return view('inventory.log-drug', compact('pharmacists', 'drugs'));
     }
 
     /**
@@ -63,8 +63,8 @@ class InventoryController extends Controller
     public function logBroken()
     {
         $pharmacists = Session::get('data.pharmacy')->pharmacists;
-
-        return view('inventory.log-broken', compact('pharmacists'));
+        $drugs = Drug::all('*');
+        return view('inventory.log-broken', compact('pharmacists', 'drugs'));
     }
 
     /**
@@ -198,7 +198,7 @@ class InventoryController extends Controller
     public function destroy($id = '')
     {
         //
-        return response()->json(['success' => true, 'message' => 'done']);
+        return response()->json(['success' => true, 'message' => 'Logging successful!']);
     }
 
     /**
@@ -235,7 +235,7 @@ class InventoryController extends Controller
 
         $drug->drugMovements()->save($drug_movements);
         $drug->save();
-        return response()->json(['success' => true, 'message' => 'done']);
+        return response()->json(['success' => true, 'message' => 'Logging successful!']);
     }
 
     /**
@@ -269,6 +269,6 @@ class InventoryController extends Controller
 
         $drug->drugMovements()->save($drug_movements);
         $drug->save();
-        return response()->json(['success' => true, 'message' => 'done']);
+        return response()->json(['success' => true, 'message' => 'Loggig successful!']);
     }
 }

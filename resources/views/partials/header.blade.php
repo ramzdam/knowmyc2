@@ -5,6 +5,7 @@
 {!! HTML::style('css/jquery-ui.min.css') !!}
 {!! HTML::style('css/bootstrap-datetimepicker.min.css') !!}
 {!! HTML::style('css/normalize.css') !!}
+{!! HTML::style('css/select2.css') !!}
 
 <style>
     body{
