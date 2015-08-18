@@ -29,7 +29,8 @@ class InventoryController extends Controller
     public function index()
     {
 
-        $drugs = Drug::latest()->get();
+//        $drugs = Drug::latest()->get();
+        $drugs = Drug::where(['pharmacy_id' => Session::get('data.pharmacy')->id])->get();
 
         return view('inventory.index', compact('drugs'));
     }
@@ -42,7 +43,7 @@ class InventoryController extends Controller
     public function create()
     {
         $pharmacists = Session::get('data.pharmacy')->pharmacists;
-        $drugs = Drug::all('*');
+        $drugs = Drug::where(['pharmacy_id' => Session::get('data.pharmacy')->id])->get();
         $create = true;
         return view('inventory.create', compact('pharmacists', 'drugs', 'create'));
     }
@@ -55,7 +56,7 @@ class InventoryController extends Controller
     public function logDrug()
     {
         $pharmacists = Session::get('data.pharmacy')->pharmacists;
-        $drugs = Drug::all('*');
+        $drugs = Drug::where(['pharmacy_id' => Session::get('data.pharmacy')->id])->get();
         $log_drug = true;
         return view('inventory.log-drug', compact('pharmacists', 'drugs', 'log_drug'));
     }
@@ -68,7 +69,7 @@ class InventoryController extends Controller
     public function logBroken()
     {
         $pharmacists = Session::get('data.pharmacy')->pharmacists;
-        $drugs = Drug::all('*');
+        $drugs = Drug::where(['pharmacy_id' => Session::get('data.pharmacy')->id])->get();
         $log_broken = true;
         return view('inventory.log-broken', compact('pharmacists', 'drugs', 'log_broken'));
     }
@@ -81,7 +82,7 @@ class InventoryController extends Controller
     public function add()
     {
         $pharmacists = Session::get('data.pharmacy')->pharmacists;
-        $drugs = Drug::all('*');
+        $drugs = Drug::where(['pharmacy_id' => Session::get('data.pharmacy')->id])->get();
         return view('inventory.add-drug', compact('pharmacists', 'drugs'));
     }
 
