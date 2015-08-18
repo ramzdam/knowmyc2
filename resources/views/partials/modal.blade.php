@@ -25,7 +25,12 @@
             </div>
             <div class="modal-footer">
                 <!--                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                <button type="button" class="btn btn-primary btn-lg btn-block" id="logit">LOG IT</button>
+                <div class="col-sm-6">
+                    <button type="button" class="btn btn-primary btn-lg btn-block" id="logit">LOG IT</button>
+                </div>
+                <div class="col-sm-6">
+                    <button type="button" class="btn btn-warning btn-lg btn-block" id="close_dialog">Edit</button></div>
+
             </div>
         </div>
     </div>
@@ -46,4 +51,9 @@
         $("#span_rx").html($("#rx_no").val());
 
     }
+
+    $("#close_dialog").on('click', function() {
+        $("#verify").modal('hide');
+    });
+
 </script>

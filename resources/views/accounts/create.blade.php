@@ -3,7 +3,7 @@
 @section('content')
 <!--<form class="container">-->
 {!! Form::open(['url' => 'accounts', 'class' => 'container']) !!}
-    <h1 class="text-uppercase text-center"><strong>My C2 Log Account Setup</strong></h1>
+    <h1 class="text-uppercase text-center"><strong>Know My C2 Account Setup</strong></h1>
 
     <div class="panel panel-info">
         <div class="panel-heading"> Login information</div>
@@ -105,7 +105,7 @@
         <div class="panel-body">
             <div class="form-group">
                 <label for="username">
-                <input type="checkbox"/> Check this box if Billing Address is the same as the Physical/Shipping Address</label>
+                <input type="checkbox" id="billing_chk"/> Check this box if Billing Address is the same as the Physical/Shipping Address</label>
             </div>
             <div class="form-group @if ($errors->has('billing_address')) has-error @endif">
                 <label for="billing_address"><i class="glyphicon glyphicon-user"></i> Street Address</label>
@@ -138,7 +138,7 @@
         <div class="panel-body">
             <div class="form-group">
                 <label for="username">
-                    <input type="checkbox"/> Check this box if Billing Address is the same as the Physical/Shipping Address</label>
+                    <input type="checkbox" id="mailing_chk"/> Check this box if Billing Address is the same as the Physical/Shipping Address</label>
             </div>
 <!--            <div class="form-group">-->
 <!--                <label for="username"><i class="glyphicon glyphicon-user"></i> Name</label>-->
@@ -169,7 +169,40 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Create Your C2 Log!</button>
+    <button type="submit" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Begin to Know My C2!</button>
 
 {!! Form::close() !!}
+<script>
+    $(document).ready(function() {
+        $("#billing_chk").on('click', function() {
+            if ($(this).is(':checked')) {
+                populateFields("billing");
+            } else {
+                unPopulateFields("billing");
+            }
+        });
+
+        $("#mailing_chk").on('click', function() {
+            if ($(this).is(':checked')) {
+                populateFields("mailing");
+            } else {
+                unPopulateFields("mailing");
+            }
+        });
+
+    });
+    function unPopulateFields(fieldname) {
+        $("#" + fieldname + "_address").val('');
+        $("#" + fieldname + "_city").val('');
+        $("#" + fieldname + "_state").val('');
+        $("#" + fieldname + "_zipcode").val('');
+    }
+
+    function populateFields(fieldname) {
+        $("#" + fieldname + "_address").val($("#address").val());
+        $("#" + fieldname + "_city").val($("#city").val());
+        $("#" + fieldname + "_state").val($("#state").val());
+        $("#" + fieldname + "_zipcode").val($("#zipcode").val());
+    }
+</script>
 @stop

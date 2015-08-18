@@ -43,7 +43,8 @@ class InventoryController extends Controller
     {
         $pharmacists = Session::get('data.pharmacy')->pharmacists;
         $drugs = Drug::all('*');
-        return view('inventory.create', compact('pharmacists', 'drugs'));
+        $create = true;
+        return view('inventory.create', compact('pharmacists', 'drugs', 'create'));
     }
 
     /**
@@ -55,7 +56,8 @@ class InventoryController extends Controller
     {
         $pharmacists = Session::get('data.pharmacy')->pharmacists;
         $drugs = Drug::all('*');
-        return view('inventory.log-drug', compact('pharmacists', 'drugs'));
+        $log_drug = true;
+        return view('inventory.log-drug', compact('pharmacists', 'drugs', 'log_drug'));
     }
 
     /**
@@ -67,7 +69,8 @@ class InventoryController extends Controller
     {
         $pharmacists = Session::get('data.pharmacy')->pharmacists;
         $drugs = Drug::all('*');
-        return view('inventory.log-broken', compact('pharmacists', 'drugs'));
+        $log_broken = true;
+        return view('inventory.log-broken', compact('pharmacists', 'drugs', 'log_broken'));
     }
 
     /**
@@ -142,7 +145,7 @@ class InventoryController extends Controller
             "pharmacist_id"       => $request->get('pharmacist'),
             "dea_no"              => $request->get('dea'),
             "rx_no"               => '',
-            "invoice_no"          => $request->get('invoice'),
+            "invoice_no"          => '',
             "quantity"            => $request->get('quantity'),
             "current_soh"         => $drug->quantity,
             "other_manufacturer"  => ($request->get('other')) ? "1" : "0",

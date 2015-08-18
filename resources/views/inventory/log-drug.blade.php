@@ -1,9 +1,10 @@
 @include('partials.sidebar')
 <div class="container-fluid">
     <div id="dashboard" class="col-md-10">
-        <div class="panel panel-warning">
-            <div class="panel-heading">LOG A DRUG</div>
+        <div class="panel panel-primary">
+            <div class="panel-heading heading-title">LOG A DRUG</div>
             <div class="panel-body">
+                <h3 class="text-center">@if (Session::has('data.pharmacy')) {{ Session::get('data.pharmacy')->name }} @endif</h3>
                 <div class="alert alert-danger error_container" role="alert" style="display: none;">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span class="sr-only">Error:</span>
@@ -87,6 +88,9 @@
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-success btn-lg btn-block text-uppercase" id="bnt_verify"><i class="glyphicon glyphicon-floppy-disk"></i> Log It</button>
+                        <div class="text-center" style="font-size: 1.5em;margin-top: 20px;">
+                            <a href="/" class="btn btn-default home_button">KnowMyC2 Home</a>
+                        </div>
                     </div>
 
                 {!! Form::close() !!}
@@ -101,7 +105,9 @@
         $('select').select2({
             placeholder: $(this).attr('placeholder')
         });
-        $('.datetime').datetimepicker();
+        $('.datetime').datetimepicker({
+            defaultDate: new Date()
+        });
         $("#chk_part2").click(function() {
             if ($(this).is(':checked')) {
                 $("#rx_part2").fadeIn();

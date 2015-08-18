@@ -85,4 +85,23 @@
         display: none;
     }
 
+    #sidebar_header{
+        border-radius: 0.3em 0.3em 0 0;
+        background: #3072AC;
+        color: #eee;
+        padding: 10px 15px;
+        text-transform: uppercase;
+    }
+
+    #dashboard .panel-heading {
+        font-size: 1.5em;
+    }
+    .heading-title {
+        font-weight: bold;
+        text-shadow: 1px 1px 1px #444;
+    }
+
+    .home_button{
+
+    }
 </style>

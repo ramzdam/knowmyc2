@@ -2,8 +2,9 @@
 <div class="container-fluid">
     <div id="dashboard" class="col-md-10">
         <div class="panel panel-primary">
-            <div class="panel-heading">Drug Inventory - Addition <span id="status_message"></span></div>
+            <div class="panel-heading heading-title">Drug Inventory - Addition <span id="status_message"></span></div>
             <div class="panel-body">
+                <h3 class="text-center">@if (Session::has('data.pharmacy')) {{ Session::get('data.pharmacy')->name }} @endif</h3>
                 <div class="alert alert-danger error_container" role="alert" style="display: none;">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span class="sr-only">Error:</span>
@@ -67,6 +68,9 @@
                 </div>
                 <div class="form-group">
                     <button type="button" class="btn btn-success btn-lg btn-block text-uppercase" id="bnt_verify"><i class="glyphicon glyphicon-floppy-disk"></i> Add Drug</button>
+                    <div class="text-center" style="font-size: 1.5em;margin-top: 20px;">
+                        <a href="/" class="btn btn-default home_button">KnowMyC2 Home</a>
+                    </div>
                 </div>
 
                 {!! Form::close() !!}
@@ -79,7 +83,10 @@
 <script>
     $(document).ready(function(){
         $('select').select2();
-        $('#date_dispensed').datetimepicker();
+
+        $('#date_dispensed').datetimepicker({
+            defaultDate: new Date()
+        });
 
         $('#bnt_verify').on('click', function (event) {
             var $data = $("#new_drug_frm").serialize();

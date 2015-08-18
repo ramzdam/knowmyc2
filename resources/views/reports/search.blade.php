@@ -1,7 +1,7 @@
 @include('partials.sidebar')
 <div class="container-fluid">
     <div id="dashboard" class="col-md-10">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">Generate Reports</div>
             <div class="panel-body">
                 <h1 class="text-center">My C2 Log General Report Utility</h1>

@@ -2,8 +2,9 @@
 <div class="container-fluid">
     <div id="dashboard" class="col-md-10">
         <div class="panel panel-primary">
-            <div class="panel-heading">LOG INVENTORY ITEM <span id="status_message"></span></div>
+            <div class="panel-heading heading-title">LOG INVENTORY ITEM <span id="status_message"></span></div>
             <div class="panel-body">
+                <h3 class="text-center">@if (Session::has('data.pharmacy')) {{ Session::get('data.pharmacy')->name }} @endif</h3>
                 <div class="alert alert-danger error_container" role="alert" style="display: none;">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span class="sr-only">Error:</span>
@@ -20,9 +21,9 @@
                                 @endforelse
                             </select>
                         </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control input-lg" id="invoice" name="invoice" value="{{ old('invoice') }}" placeholder="Enter Invoice Number">
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <input type="text" class="form-control input-lg" id="invoice" name="invoice" value="{{ old('invoice') }}" placeholder="Enter Invoice Number">-->
+<!--                        </div>-->
                         <div class="form-group">
                             <input type="text" class="form-control input-lg" id="quantity" name="quantity" value="{{ old('quantity') }}" placeholder="QTY Added or Return">
                         </div>
@@ -66,33 +67,35 @@
                                     <input type="radio" value="to" name="to_from" class="to_from"> To
                                 </label>
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="other" name="other" id="other"> Other Pharmacy
-                                </label>
-                            </div>
                             <div class="form-group" id="pharmacy_list">
                                 <label for="inputEmail3" class="control-label text-left" style="text-align: left;"><i class="glyphicon glyphicon-calendar"></i> Select Pharmacy</label>
                                 <select class="form-control input-lg" id="pharmacy" name="pharmacy">
                                     @if (isset($pharmacies))
-                                        @forelse($pharmacies as $pharmacy)
-                                        <option value="{{ $pharmacy->id }}">{{ $pharmacy->name }}</option>
-                                        @empty
-                                        <option>-- No Registered Pharmacy --</option>
-                                        @endforelse
+                                    @forelse($pharmacies as $pharmacy)
+                                    <option value="{{ $pharmacy->id }}">{{ $pharmacy->name }}</option>
+                                    @empty
+                                    <option>-- No Registered Pharmacy --</option>
+                                    @endforelse
                                     @else
                                     <option>-- No Registered Pharmacy --</option>
                                     @endif
                                 </select>
                             </div>
-
-                            <div class="form-group" id="other_pharma_div" style="display: none;">
-                                <input type="date" class="form-control date input-lg" id="other_pharmacy" name="other_pharmacy" value="{{ old('other_pharmacy') }}" placeholder="Other Pharmacy Name">
-                            </div>
+<!--                            <div class="checkbox">-->
+<!--                                <label>-->
+<!--                                    <input type="checkbox" value="other" name="other" id="other"> Other Pharmacy-->
+<!--                                </label>-->
+<!--                            </div>-->
+<!--                            <div class="form-group" id="other_pharma_div" style="display: none;">-->
+<!--                                <input type="date" class="form-control date input-lg" id="other_pharmacy" name="other_pharmacy" value="{{ old('other_pharmacy') }}" placeholder="Other Pharmacy Name">-->
+<!--                            </div>-->
                         </div>
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-success btn-lg btn-block text-uppercase" id="bnt_verify"><i class="glyphicon glyphicon-floppy-disk"></i> Log It</button>
+                        <div class="text-center" style="font-size: 1.5em;margin-top: 20px;">
+                            <a href="/" class="btn btn-default home_button">KnowMyC2 Home</a>
+                        </div>
                     </div>
 
                 {!! Form::close() !!}
@@ -105,7 +108,10 @@
 <script>
     $(document).ready(function(){
         $('select').select2();
-        $('.datetime').datetimepicker();
+
+        $('.datetime').datetimepicker({
+            defaultDate: new Date()
+        });
         $("#other").click(function() {
             if ($(this).is(":checked")) {
                 $("#pharmacy_list").hide();

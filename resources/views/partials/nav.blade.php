@@ -8,25 +8,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">KnowMYC2</a>
+            <a class="navbar-brand" href="/">KnowMyC2</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 @if(Auth::check())
-                <li class="active"><a href="#" class="btn_subpage" data-url="/inventory/create">Logging</a></li>
-                <li><a href="#" class="btn_subpage" data-url="/reports">Reports</a></li>
-                <li><a href="#" class="btn_subpage" data-url="/inventory">Inventory</a></li>
-                <li><a href="#" class="btn_subpages" data-url="">My Account</a></li>
-                <li><a href="#" class="btn_subpage" data-url="/resources">Resources</a></li>
-                <li><a href="/auth/logout" data-url="/inventory/broken">Signout</a></li>
+                <li><a href="#" class="btn_subpage navigation" data-url="/inventory/create">Logging</a></li>
+                <li><a href="#" class="btn_subpage navigation" data-url="/reports">Reports</a></li>
+                <li><a href="#" class="btn_subpage navigation" data-url="/inventory">Inventory</a></li>
+<!--                <li><a href="#" class="btn_subpage navigation" data-url="">My Account</a></li>-->
+<!--                <li><a href="/auth/logout" data-url="/inventory/broken">Signout</a></li>-->
                 @endif
                 <li class="dropdown">
-                    <a href="#about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Helpful Links <span class="caret"></span></a>
+                    <a href="#about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" class="btn_subpage" data-url="/resources">Resources</a></li>
-                        <li><a href="#">License and Agreement</a></li>
+                        <li><a href="#" class="btn_subpage navigation" data-url="/resources">Resources</a></li>
+                        <li><a href="#" class="navigation">License and Agreement</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/auth/logout">Help</a></li>
+                        <li><a href="#">Help</a></li>
                     </ul>
                 </li>
 

@@ -29,7 +29,6 @@ class CreateDrugRequest extends Request
     {
         return [
             "ndc"            => "required",
-            "invoice"        => "required",
             "quantity"       => "required|numeric",
             "dea"            => "required",
             "date_dispensed" => "required",

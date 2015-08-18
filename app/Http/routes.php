@@ -15,11 +15,11 @@
 //    return view('user.login');
 //});
 Route::get('/', ['middleware' => 'auth', 'uses' => 'PagesController@index']);
-Route::get('/login', 'UserController@login');
+//Route::get('/login', 'UserController@login');
 Route::get('/reports',  ['middleware' => 'auth', 'uses' => 'ReportsController@search']);
 Route::get('/reports/generate', ['middleware' => 'auth', 'uses' => 'ReportsController@generate']);
 Route::get('/logs', ['middleware' => 'auth', 'uses' => 'LogController@index']);
-Route::get('/inventory/logDrug', ['middleware' => 'auth', 'uses' => 'InventoryController@logDrug']);
+Route::get('/inventory/log-drug', ['middleware' => 'auth', 'uses' => 'InventoryController@logDrug']);
 Route::get('/inventory/broken', ['middleware' => 'auth', 'uses' => 'InventoryController@logBroken']);
 Route::get('/inventory/add', ['middleware' => 'auth', 'uses' => 'InventoryController@add']);
 Route::get('/resources', ['middleware' => 'auth', 'uses' => 'PagesController@resources']);
