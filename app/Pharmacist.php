@@ -16,4 +16,8 @@ class Pharmacist extends Model
         return $this->belongsTo('App\Pharmacy');
     }
 
+    public function drugMovements() {
+        return $this->hasMany('App\DrugMovement');
+    }
+
 }

@@ -39,29 +39,33 @@
                     <th>QTY</th>
                     <th>RX#</th>
                     <th>Supplier</th>
-                    <th>Invoice #</th>
+<!--                    <th>Invoice #</th>-->
                     <th>Supplier DEA</th>
                     <th>RPH</th>
                     <th>Tech</th>
                     <th>DEA Order #</th>
                     <th>SOH</th>
-                    <th>RPH</th>
+                    <th>Note</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($drug_logs as $log)
-                <tr>
-                    <td>{{ $log->date_in }}</td>
+                <tr @if (($log->type == App\Drug::S_DISPENSE || $log->type == App\Drug::S_RTS) && ($rx == $log->dispensedDrug->rx_no)) class='search_highlight' @endif>
+                    <td>{{ $log->created_at }}</td>
                     <td>{{ $log->quantity }}</td>
-                    <td>{{ $log->rx_no }}</td>
-                    <td>{{ $log->manufacturer }}</td>
-                    <td>{{ $log->invoice_no }}</td>
-                    <td>{{ $log->dea_no }}</td>
+                    <td>
+                        @if ($log->type == App\Drug::S_DISPENSE || $log->type == App\Drug::S_RTS)
+                            {{ $log->dispensedDrug->rx_no }}
+                        @endif
+                    </td>
+                    <td>@if ($log->type == App\Drug::S_INCOMING || $log->type == App\Drug::S_OUTGOING) {{ $log->inventoryDrug->distributor->name }} @endif</td>
+<!--                    <td>{{ $log->invoice_no }}</td>-->
+                    <td>@if ($log->type == App\Drug::S_INCOMING || $log->type == App\Drug::S_OUTGOING) {{ $log->inventoryDrug->distributor->dea }} @endif</td>
                     <td></td>
-                    <td>{{ $log->pharmacist->fname }}</td>
-                    <td>{{ $log->dea_no }}</td>
+                    <td>@if (isset($log->pharmacist)) {{ $log->pharmacist->name }} @endif</td>
+                    <td>@if ($log->type == App\Drug::S_INCOMING || $log->type == App\Drug::S_OUTGOING) {{ $log->inventoryDrug->dea_no }} @endif</td>
                     <td>{{ $log->current_soh }}</td>
-                    <td></td>
+                    <td>@if ($log->type == App\Drug::S_INCOMING || $log->type == App\Drug::S_OUTGOING) {{ $log->inventoryDrug->distributor->note }} @endif</td>
                 </tr>
 
                 @endforeach

@@ -23,11 +23,16 @@ Route::get('/inventory/log-drug', ['middleware' => 'auth', 'uses' => 'InventoryC
 Route::get('/inventory/broken', ['middleware' => 'auth', 'uses' => 'InventoryController@logBroken']);
 Route::get('/inventory/add', ['middleware' => 'auth', 'uses' => 'InventoryController@add']);
 Route::get('/resources', ['middleware' => 'auth', 'uses' => 'PagesController@resources']);
+Route::get('/inventory/check-script', ['middleware' => 'auth', 'uses' => 'InventoryController@checkScript']);
+Route::get('/inventory/search-script/{rx}', ['middleware' => 'auth', 'uses' => 'InventoryController@searchScript']);
+Route::get('/distributor/{transaction_id}/transaction', ['middleware' => 'auth', 'uses' => 'DistributorController@transaction']);
 
 Route::post('/inventory/dispense', ['middleware' => 'auth', 'uses' => 'InventoryController@dispense']);
 Route::post('/inventory/broken', ['middleware' => 'auth', 'uses' => 'InventoryController@dispenseBroken']);
 Route::post('/inventory/soh', ['middleware' => 'auth', 'uses' => 'InventoryController@getSoh']);
 Route::post('/inventory/add-drug', ['middleware' => 'auth', 'uses' => 'InventoryController@addDrug']);
+Route::post('/distributor/test', ['middleware' => 'auth', 'uses' => 'DistributorController@test']);
+
 //Route::get('/inventory', ['middleware' => 'auth', 'uses' => 'InventoryController@index']);
 //Route::get('/inventory/add', ['middleware' => 'auth', 'uses' => 'InventoryController@add']);
 
@@ -35,6 +40,7 @@ Route::post('/inventory/add-drug', ['middleware' => 'auth', 'uses' => 'Inventory
 Route::resource('accounts', 'AccountsController');
 Route::resource('employee', 'EmployeesController');
 Route::resource('inventory', 'InventoryController');
+Route::resource('distributor', 'DistributorController');
 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

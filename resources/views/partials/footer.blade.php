@@ -13,8 +13,10 @@
                 load_subpage(attr);
             }
         }
+
         return false;
     });
+
 
     $(document).on('click', '.sidebarlink', function () {
         log_nav = $("#navbar").children('ul').children('li:first');
@@ -23,30 +25,40 @@
         log_nav.addClass("active");
     });
 
+
     $(".navigation").on('click',function() {
-        $("li.active").removeClass("active");
-        $(this).parents("li").addClass("active");
+        source = $(this).attr('data-url');
+
+        if (source !== undefined) {
+            $("li.active").removeClass("active");
+            $(this).parents("li").addClass("active");
+        }
     });
 
     function load_subpage(view) {
+
         $.ajax({
             type: "GET",
             dataType: "html",
             url: view,
             beforeSend: function() {
-                $(".center-loading").fadeIn();
+                $(".center-loading").show();
             },
             success: function(response) {
                 $("#content").html(response);
+                $(".center-loading").hide();
+                $("#new_drug_confirm").modal('hide');
             },
             error: function(datas) {
                 $(".center-loading").hide();
                 error_code = datas.status;
                 error_message = datas.statusText;
                 alert(error_code + " : " + error_message);
+                $("#new_drug_confirm").modal('hide');
             }
         }).done(function() {
             $(".center-loading").hide();
+            $("#new_drug_confirm").modal('hide');
         }).error(function(error_reply) {
             var errors = error_reply.responseJSON;
 
@@ -61,16 +73,22 @@
             $(".center-loading").hide();
             showMessage(ul);
             $("#verify").modal('hide');
-        });;
+            $("#new_drug_confirm").modal('hide');
+        });
+
     }
+
+
 
     function showMessage(message, success, datas) {
         msg = message || "Sorry an error has occured";
         is_success = success || false;
         array_data = datas || {};
 
-        if (is_success) {
+        if (is_success == true) {
             $(".error_container").removeClass('alert-danger').addClass('alert-success');
+        } else {
+            $(".error_container").removeClass('alert-success').addClass('alert-danger');
         }
 
         $(".error_message").html(msg);
@@ -91,15 +109,20 @@
             },
             success: function(response) {
                 msg = response.message || '';
-                if (response.success) {
-                    showMessage(msg, true);
-                } else {
-                    showMessage(msg);
+                showMessage(msg, response.success);
+
+                if (response.success && typeof response.redirect !== typeof undefined && response.redirect !== false) {
+
+                    load_subpage(response.redirect);
+                    $(".center-loading").hide();
+
                 }
+                $(".center-loading").hide();
             }
         }).done(function() {
             $(".center-loading").hide();
             $("#verify").modal('hide');
+            $("#new_drug_confirm").modal('hide');
         }).error(function(error_reply) {
             var errors = error_reply.responseJSON;
 
@@ -114,8 +137,8 @@
             showMessage(ul);
             $(".center-loading").hide();
             $("#verify").modal('hide');
+            $("#new_drug_confirm").modal('hide');
         });
-
 
     }
 </script>

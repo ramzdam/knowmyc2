@@ -14,11 +14,7 @@ class AddDrugRequest extends Request
      */
     public function authorize()
     {
-        if (Auth::check()) {
-
-            return true;
-        }
-        return false;
+        return Auth::check();
     }
 
     /**

@@ -16,7 +16,7 @@
 <!--                            <input type="text" class="form-control input-lg" id="ndc" name="ndc" value="{{ old('ndc') }}" placeholder="Scan or Type NDC">-->
                             <select class="select2 form-control" id="ndc" name="ndc" placeholder="-- No drugs registered yet --">
                                 @forelse($drugs as $drug)
-                                <option value="{{ $drug->ndc }}">{{ $drug->ndc }}</option>
+                                <option value="{{ $drug->ndc }}">{{ $drug->ndc }} [{{ $drug->name }} {{ $drug->strength }}]</option>
                                 @empty
                                 <option>-- No drugs registered yet --</option>
                                 @endforelse
@@ -103,7 +103,8 @@
 <script>
     $(document).ready(function(){
         $('select').select2({
-            placeholder: $(this).attr('placeholder')
+            placeholder: $(this).attr('placeholder'),
+            tags: true
         });
         $('.datetime').datetimepicker({
             defaultDate: new Date()
@@ -114,6 +115,11 @@
             } else {
                 $("#rx_part2").fadeOut();
             }
+        });
+
+        $('#new_drug_confirm').on('hidden.bs.modal', function (e) {
+            var url = $("#confirm").attr('data-url');
+            load_subpage(url);
         });
 
         $('#bnt_verify').on('click', function (event) {
@@ -127,9 +133,15 @@
                     $(".center-loading").fadeIn();
                 },
                 success: function(response) {
+                    if (response.success == false) {
+                        $("#new_drug_confirm").modal('show');
+                        return;
+                    }
+
                     var soh = response.soh || 0;
                     copyPopulatedFields();
                     $("#span_soh").html(soh);
+                    $("#span_name").html(response.name);
                     $("#span_newsoh").html(response.negative_soh);
                     $("#verify").modal('show');
                 }

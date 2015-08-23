@@ -14,10 +14,7 @@ class CreateDrugRequest extends Request
      */
     public function authorize()
     {
-        if (Auth::check()) {
-            return true;
-        }
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -33,6 +30,7 @@ class CreateDrugRequest extends Request
             "dea"            => "required",
             "date_dispensed" => "required",
             "to_from"        => "required",
+            "pharmacy"       => "required",
         ];
     }
 }

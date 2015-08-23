@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DispenseDrugRequest extends Request
 {
@@ -13,7 +14,7 @@ class DispenseDrugRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -25,8 +26,9 @@ class DispenseDrugRequest extends Request
     {
         return [
             "ndc" => "required",
-            "quantity" => "required|numeric",
+            "pharmacist" => "required",
             "rx_no" => "required",
+            "quantity" => "required|numeric",
             "date_dispensed" => "required",
             "date_written" => "required",
         ];

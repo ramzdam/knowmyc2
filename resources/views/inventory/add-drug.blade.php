@@ -105,6 +105,7 @@
 
                     copyPopulatedFields();
                     $("#span_soh").html(soh);
+                    $("#span_name").html($("#name").val());
                     if (radio_selected == "to") {
                         next_soh = response.negative_soh;
                     }

@@ -1,5 +1,5 @@
 <!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -8,24 +8,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">KnowMyC2</a>
+            <a class="navbar-brand" href="/" style="color: #fff;">KnowMyC2</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="navbar-collapse collapse navigation">
             <ul class="nav navbar-nav">
                 @if(Auth::check())
-                <li><a href="#" class="btn_subpage navigation" data-url="/inventory/create">Logging</a></li>
-                <li><a href="#" class="btn_subpage navigation" data-url="/reports">Reports</a></li>
-                <li><a href="#" class="btn_subpage navigation" data-url="/inventory">Inventory</a></li>
+                <li><a href="#" class="btn_subpage navigation" data-url="/inventory/create"><i class="glyphicon glyphicon-level-up"> </i> Logging</a></li>
+                <li><a href="#" class="btn_subpage navigation" data-url="/reports"><i class="glyphicon glyphicon-level-up"> </i> Reports</a></li>
+                <li><a href="#" class="btn_subpage navigation" data-url="/inventory"><i class="glyphicon glyphicon-list-alt"> </i> Inventory</a></li>
 <!--                <li><a href="#" class="btn_subpage navigation" data-url="">My Account</a></li>-->
 <!--                <li><a href="/auth/logout" data-url="/inventory/broken">Signout</a></li>-->
                 @endif
                 <li class="dropdown">
-                    <a href="#about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources <span class="caret"></span></a>
+                    <a href="#about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-level-up"> </i>  Resources <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" class="btn_subpage navigation" data-url="/resources">Resources</a></li>
-                        <li><a href="#" class="navigation">License and Agreement</a></li>
+                        <li><a href="#" class="btn_subpage navigation" data-url="/resources"><i class="glyphicon glyphicon-level-up"> </i> Resources</a></li>
+                        <li><a href="#" class="navigation"><i class="glyphicon glyphicon-level-up"> </i> License and Agreement</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Help</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-level-up"> </i> Help</a></li>
                     </ul>
                 </li>
 
@@ -36,7 +36,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Information</a></li>
+                        <li><a href="#" class="btn_subpage" data-url="/inventory/check-script">Information</a></li>
                         <li><a href="#">Update</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/auth/logout">Signout</a></li>

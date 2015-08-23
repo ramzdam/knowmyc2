@@ -35,7 +35,31 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="new_drug_confirm" tabindex="-1" role="dialog" aria-labelledby="confirmNewDrugModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">NDC DOES NOT EXIST</h4>
+            </div>
+            <div class="modal-body">
+                Would you like to add a new drug entry for this?...
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary btn-lg btn_modal" data-url="/inventory/add" id="confirm">YES</button>
+                    <button type="button" class="btn btn-warning btn-lg" id="close_dialog2">NO</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <script>
+
     function copyPopulatedFields() {
 
         $("#span_ndc").html($("#ndc").val());
@@ -53,7 +77,15 @@
     }
 
     $("#close_dialog").on('click', function() {
-        $("#verify").modal('hide');
+        $(".modal").modal('hide');
+    });
+
+    $("#close_dialog2").on('click', function() {
+        $("#new_drug_confirm").modal('hide');
+    });
+
+    $("#confirm").on('click', function(event) {
+        $("#new_drug_confirm").modal('hide');
     });
 
 </script>

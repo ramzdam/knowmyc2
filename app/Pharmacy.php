@@ -25,13 +25,13 @@ class Pharmacy extends Model
                                 'mailing_city',
                                 'mailing_state',
                                 'mailing_zipcode',
-
                             );
 
     public function pharmacists() {
         return $this->hasMany('App\Pharmacist');
 
     }
+
 
     public function drugs() {
         return $this->hasMany('App\Drug');

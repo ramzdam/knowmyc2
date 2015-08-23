@@ -7,7 +7,6 @@ use App\Account;
 use App\Http\Requests\CreateAccountRequest;
 use App\Pharmacist;
 use App\Pharmacy;
-use Carbon\Carbon;
 use App\Http\Requests;
 
 use App\Http\Controllers\Controller;
@@ -19,7 +18,7 @@ class AccountsController extends Controller
 {
     public function __construct() {
         // Already logged in? Go back to previous page
-
+        $this->middleware('guest', ['except' => 'getLogout']);
 
     }
 
@@ -28,17 +27,14 @@ class AccountsController extends Controller
     }
 
     public function index() {
-//        dd(date('Y-m-d H:i:s'));
-//        dd(Carbon::now());
-
         return redirect('accounts/create');
     }
 
     public function create() {
-        if (Auth::check()) {
-
-            return Redirect::back();
-        }
+//        if (Auth::check()) {
+//
+//            return Redirect::back();
+//        }
         return view('accounts.create');
     }
 

@@ -30,7 +30,7 @@ class DispenseBrokenDrugRequest extends Request
             "quantity" => "required|numeric",
             "date_dispensed" => "required",
             "pharmacist" => "required",
-
+            "log_type" => "required",
         ];
     }
 }

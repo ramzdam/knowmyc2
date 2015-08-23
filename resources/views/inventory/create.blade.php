@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <select class="select2 form-control" name="ndc" id="ndc" placeholder="-- No drugs registered yet --">
                                 @forelse($drugs as $drug)
-                                <option value="{{ $drug->ndc }}">{{ $drug->ndc }}</option>
+                                <option value="{{ $drug->ndc }}">{{ $drug->ndc }} [{{ $drug->name }} {{ $drug->strength }}]</option>
                                 @empty
                                 <option>-- No drugs registered yet --</option>
                                 @endforelse
@@ -70,9 +70,9 @@
                             <div class="form-group" id="pharmacy_list">
                                 <label for="inputEmail3" class="control-label text-left" style="text-align: left;"><i class="glyphicon glyphicon-calendar"></i> Select Pharmacy</label>
                                 <select class="form-control input-lg" id="pharmacy" name="pharmacy">
-                                    @if (isset($pharmacies))
-                                    @forelse($pharmacies as $pharmacy)
-                                    <option value="{{ $pharmacy->id }}">{{ $pharmacy->name }}</option>
+                                    @if (isset($distributors))
+                                    @forelse($distributors as $pharmacy)
+                                    <option value="{{ $pharmacy->id }}">{{ $pharmacy->name }} [{{ $pharmacy->type }}]</option>
                                     @empty
                                     <option>-- No Registered Pharmacy --</option>
                                     @endforelse
@@ -81,14 +81,6 @@
                                     @endif
                                 </select>
                             </div>
-<!--                            <div class="checkbox">-->
-<!--                                <label>-->
-<!--                                    <input type="checkbox" value="other" name="other" id="other"> Other Pharmacy-->
-<!--                                </label>-->
-<!--                            </div>-->
-<!--                            <div class="form-group" id="other_pharma_div" style="display: none;">-->
-<!--                                <input type="date" class="form-control date input-lg" id="other_pharmacy" name="other_pharmacy" value="{{ old('other_pharmacy') }}" placeholder="Other Pharmacy Name">-->
-<!--                            </div>-->
                         </div>
                     </div>
                     <div class="form-group">
@@ -107,7 +99,12 @@
 @include('partials.modal', array('page' => 'log_inventory', 'title' => 'You are adding an inventory item'));
 <script>
     $(document).ready(function(){
-        $('select').select2();
+        $('select').select2({
+            tags: true
+
+        }).error(function(e) {
+            console.log(e);
+        });
 
         $('.datetime').datetimepicker({
             defaultDate: new Date()
@@ -123,6 +120,11 @@
 //            console.log($("input:radio[name=to_from]:checked").val());
         });
 
+        $('#new_drug_confirm').on('hidden.bs.modal', function (e) {
+            var url = $("#confirm").attr('data-url');
+            load_subpage(url);
+        });
+
         $('#bnt_verify').on('click', function (event) {
             var $data = $("#new_drug_frm").serialize();
             $.ajax({
@@ -134,12 +136,18 @@
                     $(".center-loading").fadeIn();
                 },
                 success: function(response) {
+                    if (response.success == false) {
+                        $("#new_drug_confirm").modal('show');
+                        return;
+                    }
+
                     var soh = response.soh || 0;
                     var radio_selected = $("input:radio[name=to_from]:checked").val();
                     var next_soh = response.positive_soh;
 
                     copyPopulatedFields();
                     $("#span_soh").html(soh);
+                    $("#span_name").html(response.name);
                     if (radio_selected == "to") {
                         next_soh = response.negative_soh;
                     }
